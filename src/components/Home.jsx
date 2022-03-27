@@ -6,6 +6,7 @@ import {
   getAllCountriesStats,
   matchCountries
 } from '../rtk/countriesSlice'
+import CityListing from './CityListing'
 import CountriesListing from './CountriesListing'
 import Nav from './Nav'
 
@@ -43,14 +44,15 @@ const Home = () => {
     })
   }
 
-  useEffect(() => {
+  /*  useEffect(() => {
     test()
-  }, [])
+  }, []) */
 
   return (
     <>
       <Nav></Nav>
-      <CountriesListing></CountriesListing>
+      {/* <CountriesListing></CountriesListing> */}
+      <CityListing></CityListing>
     </>
   )
 }
