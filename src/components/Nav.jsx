@@ -2,12 +2,10 @@
 //import { menuItems } from '../menuItems'
 import MenuContinents from './MenuContinents'
 //import { useSelector } from 'react-redux'
-import { useState, useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   getAllCountriesStats,
-  matchCountries,
-  addCountries,
   addCities,
   matchCities
 } from '../rtk/countriesSlice'
@@ -19,7 +17,7 @@ const Nav = () => {
   const dispatch = useDispatch()
   const countriesMain = useSelector(getAllCountriesStats)
 
-  const fetchCountries = async () => {
+  /* const fetchCountries = async () => {
     const response = await fetch(
       'https://parseapi.back4app.com/classes/Continentscountriescities_Country?limit=200&order=name&include=continent&excludeKeys=capital,phone,native,currency,shape',
       {
@@ -31,29 +29,9 @@ const Nav = () => {
     )
     const data = await response.json() // Here you have the data that you need
     dispatch(addCountries(data.results))
-    /* data is an object ,, key: results , value: array */
-    /* console.log('data:', data) */
-    /* data.results is an array */
-    /* console.log('data.results:', data.results) */
-    /* [0] object */
-    /* console.log('data.results[0]:', data.results[0]) */
-    /* string */
-    /* console.log('data.results[0].name:', data.results[0].name) */
     return data.results
-  }
-  const test = () => {
-    fetchCountries().then(countries => {
-      if (countriesMain !== []) dispatch(matchCountries())
-      /* console.log('FROM MENU CONTINENTS menu items after match: ', menuItems) */
-    })
-  }
+  } */
 
-  useEffect(() => {
-    /* test() */
-    /* console.log('when dd changed visibility, menu Items: ', menuItems)
-    console.log('FROM MENU CONTINENTS menu items after match: ', menuItems) */
-  }, [])
-  /*  */
   /* FETCH CITIES */
   const fetchCities = async () => {
     const where = encodeURIComponent(
@@ -95,18 +73,6 @@ const Nav = () => {
             Logo
           </a>
           <nav>
-            {/*     <ul className='menus'>
-              {menuItems.map((menuItem, index) => {
-                const depthLevel = 0
-                return (
-                  <MenuItems
-                    items={menuItem}
-                    key={index}
-                    depthLevel={depthLevel}
-                  />
-                )
-              })}
-            </ul> */}
             <ul className='menus'>
               {menuItems.map((continent, index) => {
                 const depthLevel = 0

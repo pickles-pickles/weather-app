@@ -1,10 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getAllCountriesStats, matchCountries } from '../rtk/countriesSlice'
+import { useSelector } from 'react-redux'
+import { getAllCountriesStats } from '../rtk/countriesSlice'
 import Dropdown from './Dropdown'
 
 const MenuItems = ({ items, depthLevel }) => {
-  const dispatch = useDispatch()
   const menuItems = useSelector(state => state.MenuItems)
   const [dropdown, setDropdown] = useState(false)
 
@@ -12,10 +11,6 @@ const MenuItems = ({ items, depthLevel }) => {
 
   /* handle the dropdown show and hide */
   useEffect(() => {
-    /* (async () => {
-      dispatch(matchCountries)
-    })() */
-
     const handler = event => {
       if (dropdown && ref.current && !ref.current.contains(event.target)) {
         setDropdown(false)

@@ -1,13 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import weatherApiKey from '../apis/weatherApiKey'
+//import weatherApiKey from '../apis/weatherApiKey'
 import {
   addCountries,
   getAllCountriesStats,
   matchCountries
 } from '../rtk/countriesSlice'
-import CityListing from './CityListing'
-import CountriesListing from './CountriesListing'
 import Nav from './Nav'
 
 const Home = () => {
@@ -43,10 +41,6 @@ const Home = () => {
       console.log('menu items after match: ', menuItems)
     })
   }
-
-  /*  useEffect(() => {
-    test()
-  }, []) */
 
   return (
     <>
