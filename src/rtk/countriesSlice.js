@@ -29,10 +29,11 @@ const countriesSlice = createSlice({
           /* if store continent === menu items continent name */
           if (stateCountryContinentName === continentName) {
             /* add country in continent sub */
-            continent.submenu = [
+            // !!
+            /* continent.submenu = [
               ...continent.submenu,
               { title: state.countries[i].name }
-            ]
+            ] */
             /* console.log(
               state.countries[i].name,
               state.countries[i].continent.name
@@ -48,64 +49,20 @@ const countriesSlice = createSlice({
       state = { ...state, cities: action.payload }
     },
     matchCities: state => {
+      console.log('la', state)
+
       const continents = state.menuItems[0]
-      /* loop though the state countries */
-      for (let i = 0; i < state.countries.length; i++) {
-        const stateCountryContinentName = state.countries[i].continent.name
-        const continentsList = continents.submenu
-        /* loop though the menu Items */
-        for (let j = 0; j < continentsList.length; j++) {
-          const continent = continents.submenu[j]
-          const continentName = continents.submenu[j].title
-          /* if store continent === menu items continent name */
-          if (stateCountryContinentName === continentName) {
-            /* add country in continent sub */
-            continent.submenu = [
-              ...continent.submenu,
-              { title: state.countries[i].name }
+      for (let i = 0; i < state.cities.length; i++) {
+        for (let j = 0; j < continents.submenu.length; j++) {
+          if (
+            state.cities[i].country.continent.name ===
+            continents.submenu[j].title
+          ) {
+            console.log('lsls', state.cities[i].country.continent.name, i, j)
+            continents.submenu[j].submenu = [
+              ...continents.submenu[j].submenu,
+              { title: state.cities[i].name }
             ]
-            /* continent.submenu = [
-              ...continent.submenu,
-              { submenu: [{ title: 'lalala' }] }
-            ] */
-            console.log(continent.submenu[2])
-            /* the above is an array of objects  ,,, array of countries */
-
-            /* console.log(
-              state.countries[i].name,
-              state.countries[i].continent.name
-            ) */
-            if (continentName === 'Africa') {
-              for (let country in continent.submenu) {
-                if (
-                  continent.submenu[country].title.toString() === 'Madagascar'
-                ) {
-                  if (false) {
-                    continent.submenu[country] = {
-                      ...continent.submenu[country],
-                      submenu: [{ title: 'trellooooooo' }]
-                    }
-                  } else {
-                    continent.submenu[country] = {
-                      ...continent.submenu[country],
-                      submenu: [{ title: 'looooooooooooool' }]
-                    }
-                  }
-                } else {
-                  continent.submenu[country] = {
-                    ...continent.submenu[country],
-                    submenu: [{ title: 'lmao' }]
-                  }
-                }
-
-                console.log(
-                  'continent submenu from slice LMAO',
-                  continent.submenu[country]
-                )
-              }
-            }
-
-            break
           }
         }
       }
@@ -121,6 +78,7 @@ export const {
   matchCities
 } = countriesSlice.actions
 export const getAllCountriesStats = state => state.countries.countries
+export const getAllCitiesStats = state => state.countries.cities
 export default countriesSlice.reducer
 
 /*     for (let i = 0; i < state.cities.length; i++) {

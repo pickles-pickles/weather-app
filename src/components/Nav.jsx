@@ -49,7 +49,7 @@ const Nav = () => {
   }
 
   useEffect(() => {
-    test()
+    /* test() */
     /* console.log('when dd changed visibility, menu Items: ', menuItems)
     console.log('FROM MENU CONTINENTS menu items after match: ', menuItems) */
   }, [])
@@ -64,7 +64,7 @@ const Nav = () => {
       })
     )
     const response = await fetch(
-      `https://parseapi.back4app.com/classes/Continentscountriescities_City?limit=10&order=country&include=country,country.continent&keys=name,country,country.name,country.emoji,country.code,country.continent,country.continent.name,location,cityId,adminCode&where=${where}`,
+      `https://parseapi.back4app.com/classes/Continentscountriescities_City?limit=50&order=country&include=country,country.continent&keys=name,country,country.name,country.emoji,country.code,country.continent,country.continent.name,location,cityId,adminCode&where=${where}`,
       {
         headers: {
           'X-Parse-Application-Id': 'Q0dHBgFgmlqMswwkCmcsxcqwMXb7RoecFMbKcMpi', // This is your app's application id
@@ -80,14 +80,11 @@ const Nav = () => {
   const citiesTest = () => {
     fetchCities().then(cities => {
       if (countriesMain !== []) dispatch(matchCities())
-      console.log('FROM MENU CONTINENTS menu items after match: ', menuItems)
     })
   }
 
   useEffect(() => {
     citiesTest()
-    console.log('when dd changed visibility, menu Items: ', menuItems)
-    console.log('FROM MENU CONTINENTS menu items after match: ', menuItems)
   }, [])
   /*  */
   return (

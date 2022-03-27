@@ -12,9 +12,9 @@ const MenuItems = ({ items, depthLevel }) => {
 
   /* handle the dropdown show and hide */
   useEffect(() => {
-    ;(async () => {
+    /* (async () => {
       dispatch(matchCountries)
-    })()
+    })() */
 
     const handler = event => {
       if (dropdown && ref.current && !ref.current.contains(event.target)) {
@@ -28,7 +28,7 @@ const MenuItems = ({ items, depthLevel }) => {
       document.removeEventListener('mousedown', handler)
       document.removeEventListener('touchstart', handler)
     }
-  }, [dropdown, menuItems, dispatch])
+  }, [dropdown, menuItems])
 
   const onMouseEnter = () => {
     window.innerWidth > 960 && setDropdown(true)
