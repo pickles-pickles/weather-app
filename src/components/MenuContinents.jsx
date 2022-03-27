@@ -1,34 +1,33 @@
 import { useState, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllCountriesStats, matchCountries } from '../rtk/countriesSlice'
+import {
+  getAllCountriesStats,
+  matchCountries,
+  addCountries
+} from '../rtk/countriesSlice'
+import ContinentsDropdown from './ContinentsDropdown'
 import Dropdown from './Dropdown'
 
-const MenuItems = ({ items, depthLevel }) => {
+const MenuContinents = ({ items, depthLevel }) => {
   const dispatch = useDispatch()
-  const menuItems = useSelector(state => state.MenuItems)
+  const menuItems = useSelector(state => state.countries.menuItems[0].submenu)
   const [dropdown, setDropdown] = useState(false)
+  const countriesMain = useSelector(getAllCountriesStats)
 
   let ref = useRef()
 
   /* handle the dropdown show and hide */
   useEffect(() => {
-    ;(async () => {
+    /* ;(async () => {
       dispatch(matchCountries)
-    })()
+    })() */
 
     const handler = event => {
       if (dropdown && ref.current && !ref.current.contains(event.target)) {
         setDropdown(false)
       }
     }
-    document.addEventListener('mousedown', handler)
-    document.addEventListener('touchstart', handler)
-    return () => {
-      // Cleanup the event listener
-      document.removeEventListener('mousedown', handler)
-      document.removeEventListener('touchstart', handler)
-    }
-  }, [dropdown, menuItems, dispatch])
+  }, [dropdown])
 
   const onMouseEnter = () => {
     window.innerWidth > 960 && setDropdown(true)
@@ -38,7 +37,7 @@ const MenuItems = ({ items, depthLevel }) => {
     window.innerWidth > 960 && setDropdown(false)
   }
 
-  const countriesMain = useSelector(getAllCountriesStats)
+  /* test */
 
   return (
     <li
@@ -60,7 +59,7 @@ const MenuItems = ({ items, depthLevel }) => {
             {items.title}{' '}
             {depthLevel > 0 ? <span>&raquo;</span> : <span className='arrow' />}
           </button>
-          <Dropdown
+          <ContinentsDropdown
             depthLevel={depthLevel}
             submenus={items.submenu}
             dropdown={dropdown}
@@ -74,4 +73,4 @@ const MenuItems = ({ items, depthLevel }) => {
   )
 }
 
-export default MenuItems
+export default MenuContinents

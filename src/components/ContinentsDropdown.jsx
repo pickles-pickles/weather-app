@@ -1,10 +1,8 @@
-import MenuItems from './MenuItems'
-
 import { useSelector } from 'react-redux'
 import { getAllCountriesStats } from '../rtk/countriesSlice'
 import MenuContinents from './MenuContinents'
 
-const Dropdown = ({ submenus, dropdown, depthLevel }) => {
+const ContinentsDropdown = ({ submenus, dropdown, depthLevel }) => {
   /* items.submenu */
   /* increase depth */
   depthLevel = depthLevel + 1
@@ -26,4 +24,4 @@ const Dropdown = ({ submenus, dropdown, depthLevel }) => {
   )
 }
 
-export default Dropdown
+export default ContinentsDropdown

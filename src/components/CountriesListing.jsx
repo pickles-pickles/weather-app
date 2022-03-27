@@ -9,7 +9,7 @@ const CountriesListing = () => {
   return (
     <>
       <h1>Countries Listing</h1>
-      {/* <div>{JSON.stringify(countries)}</div> */}
+      <div>{JSON.stringify(countries)}</div>
       {/* countries is an array of objects */}
       <hr />
       <div>
