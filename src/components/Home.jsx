@@ -6,6 +6,7 @@ import {
   getAllCountriesStats,
   matchCountries
 } from '../rtk/countriesSlice'
+import Calendar from './calendar/Calendar'
 import Nav from './Nav'
 
 const Home = () => {
@@ -47,6 +48,7 @@ const Home = () => {
       <Nav></Nav>
       {/* <CountriesListing></CountriesListing> */}
       {/* <CityListing></CityListing> */}
+      <Calendar></Calendar>
     </>
   )
 }

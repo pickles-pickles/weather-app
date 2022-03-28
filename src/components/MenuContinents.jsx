@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   getAllCountriesStats,
   matchCountries,
-  addCountries
+  addCountries,
+  findLocation
 } from '../rtk/countriesSlice'
 import ContinentsDropdown from './ContinentsDropdown'
 import Dropdown from './Dropdown'
@@ -34,7 +35,8 @@ const MenuContinents = ({ items, depthLevel }) => {
   }
 
   const onMouseLeave = () => {
-    window.innerWidth > 960 && setDropdown(false)
+    // !! TEMP TRUE
+    window.innerWidth > 960 && setDropdown(true)
   }
 
   /* test */
@@ -67,7 +69,16 @@ const MenuContinents = ({ items, depthLevel }) => {
         </>
       ) : (
         /* title */
-        <a href='/#'>{items.title}</a>
+        <a
+          href='/#'
+          onClick={() => {
+            //!! set the items.title as location for weather api
+            console.log('clicked city: ', items.title)
+            dispatch(findLocation(items.title))
+          }}
+        >
+          {items.title}
+        </a>
       )}
     </li>
   )

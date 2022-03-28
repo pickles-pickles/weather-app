@@ -3,7 +3,8 @@ import { menuItems } from '../menuItems'
 const initialState = {
   countries: [],
   menuItems: menuItems,
-  cities: []
+  cities: [],
+  currentLocation: { name: '', lat: '', lon: '' }
 }
 
 const countriesSlice = createSlice({
@@ -58,12 +59,24 @@ const countriesSlice = createSlice({
             state.cities[i].country.continent.name ===
             continents.submenu[j].title
           ) {
-            console.log('lsls', state.cities[i].country.continent.name, i, j)
+            // !! log for check
+            /*        console.log('lsls', state.cities[i].country.continent.name, i, j) */
             continents.submenu[j].submenu = [
               ...continents.submenu[j].submenu,
               { title: state.cities[i].name }
             ]
           }
+        }
+      }
+    },
+    findLocation: (state, action) => {
+      for (let i = 0; i < state.cities.length; i++) {
+        if (action.payload === state.cities[i].name) {
+          /* set current loc name */
+          state.currentLocation.name = state.cities[i].name
+          /* set current loc cords */
+          state.currentLocation.lat = state.cities[i].location.latitude
+          state.currentLocation.lon = state.cities[i].location.longitude
         }
       }
     }
@@ -75,7 +88,8 @@ export const {
   addCountries,
   matchCountries,
   addCities,
-  matchCities
+  matchCities,
+  findLocation
 } = countriesSlice.actions
 export const getAllCountriesStats = state => state.countries.countries
 export const getAllCitiesStats = state => state.countries.cities
