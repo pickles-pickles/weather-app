@@ -4,7 +4,8 @@ const initialState = {
   countries: [],
   menuItems: menuItems,
   cities: [],
-  currentLocation: { name: '', lat: '', lon: '' }
+  currentLocation: { name: '', lat: '', lon: '' },
+  userLocation: { lat: '', lon: '' }
 }
 
 const countriesSlice = createSlice({
@@ -79,6 +80,20 @@ const countriesSlice = createSlice({
           state.currentLocation.lon = state.cities[i].location.longitude
         }
       }
+    },
+    setUserLocation: (state, action) => {
+      if (navigator.geolocation) {
+        console.log('allowed')
+        state.userLocation.lat = action.payload.lat
+        state.userLocation.lon = action.payload.lon
+      } else {
+        console.log('user denied')
+      }
+
+      console.log('dispatched')
+    },
+    getUserLocation: state => {
+      return state.countries.userLocation
     }
   },
   extraReducers: {}
@@ -89,7 +104,9 @@ export const {
   matchCountries,
   addCities,
   matchCities,
-  findLocation
+  findLocation,
+  setUserLocation,
+  getUserLocation
 } = countriesSlice.actions
 export const getAllCountriesStats = state => state.countries.countries
 export const getAllCitiesStats = state => state.countries.cities

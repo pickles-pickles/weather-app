@@ -10,6 +10,7 @@ import Calendar from './calendar/Calendar'
 import Nav from './Nav'
 import MainCard from './cards/MainCard'
 import SideCard from './SideCard'
+import UserSidecard from './cards/UserSidecard'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -50,7 +51,8 @@ const Home = () => {
     <>
       <Nav></Nav>
       <div className='d-flex w-100 justify-content-around'>
-        <Calendar></Calendar>
+        <UserSidecard></UserSidecard>
+
         <MainCard></MainCard>
         <SideCard></SideCard>
       </div>
