@@ -8,6 +8,8 @@ import {
 } from '../rtk/countriesSlice'
 import Calendar from './calendar/Calendar'
 import Nav from './Nav'
+import MainCard from './cards/MainCard'
+import SideCard from './SideCard'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -42,13 +44,16 @@ const Home = () => {
       console.log('menu items after match: ', menuItems)
     })
   }
-
+  /* <CountriesListing></CountriesListing> */
+  /* <CityListing></CityListing> */
   return (
     <>
       <Nav></Nav>
-      {/* <CountriesListing></CountriesListing> */}
-      {/* <CityListing></CityListing> */}
-      <Calendar></Calendar>
+      <div className='d-flex w-100 justify-content-around'>
+        <Calendar></Calendar>
+        <MainCard></MainCard>
+        <SideCard></SideCard>
+      </div>
     </>
   )
 }

@@ -95,3 +95,19 @@ header {
   left: 100%;
   top: -7px;
 }
+/*  $$ CALENDAR */
+.calendar {
+  width: 16%;
+}
+/* $$ CARDS */
+
+/* $$ MAIN CARD */
+
+.main-card {
+  width: 66%;
+}
+
+/* $$ SIDE CARD */
+.side-card {
+  width: 16%;
+}

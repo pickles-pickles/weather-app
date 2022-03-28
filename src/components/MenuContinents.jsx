@@ -1,13 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  getAllCountriesStats,
-  matchCountries,
-  addCountries,
-  findLocation
-} from '../rtk/countriesSlice'
+import { getAllCountriesStats, findLocation } from '../rtk/countriesSlice'
 import ContinentsDropdown from './ContinentsDropdown'
-import Dropdown from './Dropdown'
 
 const MenuContinents = ({ items, depthLevel }) => {
   const dispatch = useDispatch()
@@ -35,8 +29,8 @@ const MenuContinents = ({ items, depthLevel }) => {
   }
 
   const onMouseLeave = () => {
-    // !! TEMP TRUE
-    window.innerWidth > 960 && setDropdown(true)
+    // !! if neede ,TEMP TRUE
+    window.innerWidth > 960 && setDropdown(false)
   }
 
   /* test */

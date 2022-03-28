@@ -12,7 +12,7 @@ const Calendar = () => {
   console.log('selected date', startDate)
   return (
     <>
-      <div style={{ width: '50opx', height: '300px' }}>
+      <div className='calendar'>
         <DatePicker
           selected={startDate}
           onChange={date => {
