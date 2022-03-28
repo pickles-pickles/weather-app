@@ -1,9 +1,15 @@
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getUserLocation, setUserLocation } from '../rtk/countriesSlice'
 
 const UserLocation = () => {
   const userLocation = useSelector(getUserLocation)
+  useEffect(() => {
+    console.log('userLocation', userLocation)
+    console.log('userLocation lat', userLocation.lat)
+  }, [])
+
   const dispatch = useDispatch()
 
   // ** ask for user location permission
