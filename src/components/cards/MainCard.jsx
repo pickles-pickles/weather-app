@@ -2,9 +2,10 @@ import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import weatherApiKey from '../../apis/weatherApiKey'
 import { getLocation } from '../../rtk/countriesSlice'
-import { getDate } from '../../rtk/dateSlice'
+import { getDate, getDaysFromToday } from '../../rtk/dateSlice'
 
 const MainCard = () => {
+  /* cords */
   const lat1 = useSelector(getLocation)
   const lat = lat1.payload.countries.currentLocation.lat
   console.log('lat', lat)
@@ -12,9 +13,13 @@ const MainCard = () => {
   const lon = lon1.payload.countries.currentLocation.lat
   const part = ''
 
+  /* date */
   const date1 = useSelector(getDate)
   const date = date1.payload.date.date
   console.log('date in card', date)
+
+  /* days from today */
+  const daysFromToday = useSelector(getDaysFromToday)
 
   const fetchWeather = async () => {
     const request = await fetch(
@@ -33,7 +38,7 @@ const MainCard = () => {
         <p>date: {date}</p>
         <p>lat {lat}</p>
         <p>lon {lon}</p>
-        <p></p>
+        <p>days from today {daysFromToday} </p>
       </div>
     </>
   )

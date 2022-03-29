@@ -4,7 +4,7 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { addDays } from 'date-fns'
 import { useDispatch } from 'react-redux'
-import { setDate } from '../../rtk/dateSlice'
+import { setDate, setDaysFromToday } from '../../rtk/dateSlice'
 
 const Calendar = () => {
   const dispatch = useDispatch()
@@ -19,7 +19,10 @@ const Calendar = () => {
           onChange={date => {
             setStartDate(date)
             console.log('selected date', startDate)
+            /* set date */
             dispatch(setDate(date.toString()))
+            /* set days from today */
+            dispatch(setDaysFromToday())
           }}
           maxDate={addDays(new Date(), 8)}
           minDate={addDays(new Date(), 0)}
