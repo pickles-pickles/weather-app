@@ -11,39 +11,39 @@ const Settings = () => {
     switch (e.target.innerText) {
       case 'Today':
         dispatch(setDaysFromToday(0))
-        localStorage.setItem('defaultDaysAfterToday', '0')
+        localStorage.setItem('defaultDaysFromToday', '0')
         break
       case 'Tomorrow':
         dispatch(setDaysFromToday(1))
-        localStorage.setItem('defaultDaysAfterToday', '1')
+        localStorage.setItem('defaultDaysFromToday', '1')
         break
       case '+2 days':
         dispatch(setDaysFromToday(2))
-        localStorage.setItem('defaultDaysAfterToday', '2')
+        localStorage.setItem('defaultDaysFromToday', '2')
         break
       case '+3 days':
         dispatch(setDaysFromToday(3))
-        localStorage.setItem('defaultDaysAfterToday', '3')
+        localStorage.setItem('defaultDaysFromToday', '3')
         break
       case '+4 days':
         dispatch(setDaysFromToday(4))
-        localStorage.setItem('defaultDaysAfterToday', '4')
+        localStorage.setItem('defaultDaysFromToday', '4')
         break
       case '+5 days':
         dispatch(setDaysFromToday(5))
-        localStorage.setItem('defaultDaysAfterToday', '5')
+        localStorage.setItem('defaultDaysFromToday', '5')
         break
       case '+6 days':
         dispatch(setDaysFromToday(6))
-        localStorage.setItem('defaultDaysAfterToday', '6')
+        localStorage.setItem('defaultDaysFromToday', '6')
         break
       case '+1 week':
         dispatch(setDaysFromToday(7))
-        localStorage.setItem('defaultDaysAfterToday', '7')
+        localStorage.setItem('defaultDaysFromToday', '7')
         break
       default:
         dispatch(setDaysFromToday(0))
-        localStorage.setItem('defaultDaysAfterToday', '0')
+        localStorage.setItem('defaultDaysFromToday', '0')
         break
     }
   }

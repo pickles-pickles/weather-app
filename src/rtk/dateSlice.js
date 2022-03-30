@@ -3,9 +3,15 @@ import { createSlice } from '@reduxjs/toolkit'
 const newDate = new Date()
 const initDate = newDate.toString()
 
+const getDefaultDaysFromToday = () => {
+  if (localStorage.getItem('defaultDaysFromToday')) {
+    return parseInt(localStorage.getItem('defaultDaysFromToday'))
+  } else return 0
+}
+
 const initialState = {
   date: initDate, //string
-  daysFromToday: 0
+  daysFromToday: getDefaultDaysFromToday()
 }
 
 const dateSlice = createSlice({
