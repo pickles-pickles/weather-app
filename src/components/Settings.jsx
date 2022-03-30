@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { useDispatch } from 'react-redux'
+import { setUserLocation } from '../rtk/countriesSlice'
 import { setDaysFromToday } from '../rtk/dateSlice'
 import { setTempUnit } from '../rtk/weatherSlice'
 
@@ -47,10 +48,31 @@ const Settings = () => {
     }
   }
 
+  function getLocation () {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(setDefaultLocation)
+    } else {
+      console.log('user denied')
+    }
+  }
+
+  function setDefaultLocation (position) {
+    console.log(
+      'Latitude: ' +
+        position.coords.latitude +
+        'Longitude: ' +
+        position.coords.longitude
+    )
+    const lat = position.coords.latitude
+    const lon = position.coords.longitude
+    dispatch(setUserLocation({ lat: lat, lon: lon }))
+    localStorage.setItem('defaultLat', lat.toString())
+    localStorage.setItem('defaultLon', lon.toString())
+  }
+
   return (
     <>
       <div className='d-flex flex-column'>
-        {/* location */}
         {/* date */}
         <h3>The default date will be</h3>
         <div className='btn-group' role='group' aria-label='Basic example'>
@@ -151,6 +173,24 @@ const Settings = () => {
             Fafrenheit
           </option>
         </select>
+        {/* location */}
+        <h3>The default location will be</h3>
+        <button
+          onClick={() => {
+            getLocation()
+            dispatch(setUserLocation(getLocation))
+          }}
+        >
+          Current location
+        </button>
+        <button
+          className='btn btn-primary'
+          onClick={() => {
+            localStorage.clear()
+          }}
+        >
+          Clear Default Settings
+        </button>
       </div>
     </>
   )
