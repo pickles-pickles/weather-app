@@ -8,7 +8,7 @@ import {
 } from '../rtk/countriesSlice'
 import Calendar from './calendar/Calendar'
 import Nav from './Nav'
-import MainCard from './cards/MainCard'
+import MainCard from './cards/mainCard/MainCard'
 import SideCard from './SideCard'
 import UserSidecard from './cards/UserSidecard'
 

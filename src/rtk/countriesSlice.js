@@ -48,7 +48,7 @@ const countriesSlice = createSlice({
     },
     addCities: (state, action) => {
       state.cities = action.payload
-      state = { ...state, cities: action.payload }
+      //state = { ...state, cities: action.payload }
     },
     matchCities: state => {
       console.log('la', state)

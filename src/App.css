@@ -107,6 +107,13 @@ header {
   width: 66%;
 }
 
+.temp-units-form-select {
+  width: 20%;
+  float: right;
+
+  color: #212529;
+}
+
 /* $$ SIDE CARD */
 .side-card {
   width: 16%;
