@@ -6,10 +6,10 @@ const TempUnitsSelect = () => {
   return (
     <>
       <select
-        class='form-select temp-units-form-select'
+        className='form-select temp-units-form-select'
         aria-label='Temperature units'
       >
-        <option selected>Temperature units</option>
+        <option selected={true}>Temperature units</option>
         <option
           value='Celsius'
           onClick={e => {
