@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { act } from 'react-dom/test-utils'
+
+const getDefaultTempUnit = () => {
+  if (localStorage.getItem('defaultTempUnit')) {
+    return localStorage.getItem('defaultTempUnit')
+  } else return 'Celsius'
+}
 
 const initialState = {
   weatherDaily: [],
@@ -8,7 +13,7 @@ const initialState = {
   /* tempUnits */
   /* temp */
   temp: undefined,
-  tempUnit: 'Celsius'
+  tempUnit: getDefaultTempUnit()
 }
 
 const weatherSlice = createSlice({

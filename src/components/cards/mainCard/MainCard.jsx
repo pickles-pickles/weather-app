@@ -56,10 +56,10 @@ const MainCard = () => {
       dispatch(setHourlyWeather(stats.hourly))
     }
   }
-
-  useEffect(() => {
+  //!! temp commented out
+  /* useEffect(() => {
     fetchWeather()
-  }, [lat])
+  }, [lat]) */
 
   /* TEMP */
   const tempUnit = useSelector(getTempUnit)

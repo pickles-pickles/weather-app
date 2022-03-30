@@ -45,11 +45,11 @@ const UserLocation = () => {
           dispatch(setUserLocation(getLocation))
         }}
       >
-        Select current location
+        Select current location & show temp(to be done)
       </button>
 
-      <Link to='/map'>
-        <button>Select default location</button>
+      <Link to='/settings'>
+        <button>Change default Settings</button>
       </Link>
       <p>Current Location</p>
       <p>{userLocation ? '' : 'No default location selected'}</p>
