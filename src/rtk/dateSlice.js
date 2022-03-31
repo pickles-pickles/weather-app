@@ -13,7 +13,9 @@ const initialState = {
   date: initDate, //string
   daysFromToday: getDefaultDaysFromToday(),
   myStartDate: 0,
-  myEndDate: 7
+  myEndDate: 7,
+  start: 0,
+  end: 7
 }
 
 const dateSlice = createSlice({
@@ -51,6 +53,12 @@ const dateSlice = createSlice({
     setMyEndDate: (state, action) => {
       /* if (action.payload[0] !== null && action.payload[1] !== null) */
       state.myEndDate = action.payload
+    },
+    setStart: (state, action) => {
+      state.start = action.payload
+    },
+    setEnd: (state, action) => {
+      state.end = action.payload
     }
   }
 })
@@ -60,12 +68,16 @@ export const {
   setDaysFromToday,
   logDate,
   setMyStartDate,
-  setMyEndDate
+  setMyEndDate,
+  setStart,
+  setEnd
 } = dateSlice.actions
 export const getDaysFromToday = state => state.date.daysFromToday
 export const getDate = state => state.date.date
 export const getStartDate = state => state.date.myStartDate
 export const getEndDate = state => state.date.myEndDate
+export const getStart = state => state.date.start
+export const getEnd = state => state.date.end
 
 /*   export const getAllCountriesStats = state => state.countries.countries
   export const getAllCitiesStats = state => state.countries.cities */

@@ -1,8 +1,7 @@
 import { useSelector } from 'react-redux'
 import { getLocation } from '../rtk/countriesSlice'
 import { getDate } from '../rtk/dateSlice'
-import { getWeatherDaily, getTempUnit } from '../rtk/weatherSlice'
-import DetailsCalendar from './calendar/DetailsCalendar'
+import { getWeatherDaily, getTempUnit, getMeanTemp } from '../rtk/weatherSlice'
 import DetailsRange from './DetailsRange'
 
 const Details = () => {
@@ -13,6 +12,7 @@ const Details = () => {
   /* TEMP */
   const dailyWeather = useSelector(getWeatherDaily)
   const tempUnit = useSelector(getTempUnit)
+  const meanTemp = useSelector(getMeanTemp)
 
   const convertTemp = a => {
     if (tempUnit === 'Celsius') {
@@ -62,9 +62,9 @@ const Details = () => {
         </div>
         <div className='details-calendar'>
           <h1>Select range of dates ton calculate average</h1>
-          {/* <DetailsRange></DetailsRange> */}
-          <DetailsCalendar></DetailsCalendar>
-          <h2>average temp is: {}</h2>
+          <DetailsRange></DetailsRange>
+          {/* <DetailsCalendar></DetailsCalendar> */}
+          <h2>average temp is: {convertTemp(meanTemp)}</h2>
         </div>
       </div>
     </>

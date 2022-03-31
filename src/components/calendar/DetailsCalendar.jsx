@@ -8,18 +8,24 @@ import {
   getStartDate,
   getEndDate,
   setMyEndDate,
-  setMyStartDate
+  setMyStartDate,
+  getDaysFromToday
 } from '../../rtk/dateSlice'
-import { convertTemp, getWeatherDaily } from '../../rtk/weatherSlice'
+import {
+  convertTemp,
+  getWeatherDaily,
+  setMeanTemp
+} from '../../rtk/weatherSlice'
 
 const DetailsCalendar = () => {
-  const [dateRange, setDateRange] = useState([null, null])
-  const [startDate, endDate] = dateRange
-
   const dispatch = useDispatch()
   const myStartDate = useSelector(getStartDate)
   const myEndDate = useSelector(getEndDate)
   const dailyWeather = useSelector(getWeatherDaily)
+  const daysFromToday = useSelector(getDaysFromToday)
+
+  const [dateRange, setDateRange] = useState([null, null])
+  const [startDate, endDate] = dateRange
 
   const calcDaysFromToday = date => {
     const oneDay = 24 * 60 * 60 * 1000 // hours*minutes*seconds*milliseconds
@@ -41,7 +47,10 @@ const DetailsCalendar = () => {
       count = 1,
       temp = 0
     console.log('templll', temp)
-    if (myStartDate !== null && myEndDate !== null && dailyWeather.length > 1) {
+    if (
+      (dateRange[0] !== null) & (dateRange[1] !== null) &&
+      dailyWeather.length > 1
+    ) {
       for (let i = myStartDate; i <= myEndDate; i++) {
         console.log('hi from inside the loop')
         temp = dailyWeather[i].temp.day
@@ -49,19 +58,20 @@ const DetailsCalendar = () => {
         temps += temp
         count++
       }
-      return convertTemp(temps / count)
+      return temps / count
     }
   }
 
   useEffect(() => {
-    if (myStartDate !== null && myEndDate !== null) {
+    if (dateRange[0] !== null && dateRange[1] !== null) {
       calcMean()
       console.log('mean', typeof calcMean() /* calcMean().payload */)
       if (calcMean()) {
-        console.log(calcMean().payload)
+        console.log(convertTemp(calcMean().payload))
+        dispatch(setMeanTemp(calcMean().payload))
       }
     }
-  }, [myEndDate])
+  }, [dateRange[1]])
 
   return (
     <>
