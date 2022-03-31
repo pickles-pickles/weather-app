@@ -206,7 +206,7 @@ const Settings = () => {
           </button>
         </div>
         <div className='col-md-6 col-12  d-flex flex-column'>
-          <h1>Current Settings</h1>
+          <h1 className='text-center'>Current Settings</h1>
           {/* SELECTED SETTINGS */}
           <div class='card'>
             <div className='card-img-top'>

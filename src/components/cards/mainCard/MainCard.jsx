@@ -134,12 +134,6 @@ const MainCard = () => {
                 {mainWeather.temp ? mainWeather.humidity + ' %' : null}{' '}
               </p>
             </li>
-            <li className='list-group-item'>
-              <p className='main-card-p'>
-                {' '}
-                icon: {mainWeather.temp ? mainWeather.weather[0].icon : null}
-              </p>
-            </li>
           </ul>
         ) : (
           <p className='card-text text-center'>Select a city</p>

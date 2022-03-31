@@ -59,8 +59,10 @@ const Details = () => {
             <h1>Please, select a location first</h1>
           )}
         </div>
-        <div className='details-calendar'>
-          <h1>Select range of dates ton calculate average</h1>
+        <div className='details-calendar d-flex flex-column align-items-center'>
+          <h1 className='text-center'>
+            Select range of dates ton calculate average
+          </h1>
           <DetailsRange></DetailsRange>
           {/* <DetailsCalendar></DetailsCalendar> */}
           <h2>average temp is: {convertTemp(meanTemp)}</h2>

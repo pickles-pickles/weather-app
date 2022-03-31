@@ -36,47 +36,50 @@ const DetailsRange = () => {
 
   return (
     <>
-      <h1>Get the average temperature for days:</h1>
-      <p>From(days from today):</p>
-      {/* select the start date */}
-      <select
-        className='form-select'
-        aria-label='select'
-        value={start}
-        onChange={e => {
-          handleChange(e, setStart)
-        }}
-      >
-        {options.map(option => (
-          <option value={start} key={option}>
-            {option}
-          </option>
-        ))}
-      </select>
-      <p>Range of days</p>
-      {/* select how many days */}
-      <select
-        className='form-select'
-        aria-label='select'
-        value={end}
-        onChange={e => {
-          handleChange(e, setEnd)
-        }}
-      >
-        {options.map(option => (
-          <option value={option} key={option} disabled={start + option > 7}>
-            {option}
-          </option>
-        ))}
-      </select>
-      {/* send value to store */}
-      <button
-        onClick={() => {
-          dispatch(setMeanTemp(meanTempToSend))
-        }}
-      >
-        Calculate mean Temp
-      </button>
+      <div className=''>
+        <h2 className='text-center'>Get the average temperature for days:</h2>
+        <p>From(days from today):</p>
+        {/* select the start date */}
+        <select
+          className='form-select'
+          aria-label='select'
+          value={start}
+          onChange={e => {
+            handleChange(e, setStart)
+          }}
+        >
+          {options.map(option => (
+            <option value={option} key={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+        <p>Range of days</p>
+        {/* select how many days */}
+        <select
+          className='form-select'
+          aria-label='select'
+          value={end}
+          onChange={e => {
+            handleChange(e, setEnd)
+          }}
+        >
+          {options.map(option => (
+            <option value={option} key={option} disabled={start + option > 7}>
+              {option}
+            </option>
+          ))}
+        </select>
+        {/* send value to store */}
+        <button
+          className='btn btn-secondary d-block mx-auto my-2'
+          onClick={() => {
+            dispatch(setMeanTemp(meanTempToSend))
+          }}
+        >
+          Calculate mean Temp
+        </button>
+      </div>
     </>
   )
 }
