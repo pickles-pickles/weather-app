@@ -1,8 +1,12 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { getIsFlipped, setIsFlipped } from '../../rtk/animSlice'
 import { getLocation } from '../../rtk/locationSlice'
 import { getWeatherDaily, getTempUnit } from '../../rtk/weatherSlice'
+import DetailsCardFace from './DetailsCardFace'
 
 const DetailsCard = () => {
+  const dispatch = useDispatch()
+
   /* location */
   const currentLocation = useSelector(getLocation)
   const locationName = currentLocation.payload.location.currentLocation.name
@@ -21,40 +25,49 @@ const DetailsCard = () => {
     }
     return a
   }
+
+  const isFlipped = useSelector(getIsFlipped)
+  const tempDescription = [
+    { myKey: 'day', myVal: 'Mean Temperature: ', isTemp: true },
+    { myKey: 'min', myVal: 'Min Temperature: ', isTemp: true },
+    { myKey: 'max', myVal: 'Max Temperature: ', isTemp: true }
+  ]
+
+  const otherDescription = [
+    { myKey: 'humidity', myVal: 'Humidity (%) : ', isTemp: false },
+    { myKey: 'pressure', myVal: 'Pressure (mbar): ', isTemp: false },
+    { myKey: 'wind_speed', myVal: 'Wind Speed:', isTemp: false }
+  ]
+
   return (
     <>
       <div className='scene'>
-        <div className='bg-success details-main-card d-flex flex-wrap justify-content-between '>
-          {dailyWeather.length > 0 ? (
-            dailyWeather.map(day => (
-              <div
-                className='card d-flex flex-row my-2'
-                style={{ width: '48%' }}
-                key={day.dt}
-              >
-                <div className='card-body'>
-                  <h5 className='card-title'>{locationName}</h5>
-                  <h6 className='card-subtitle mb-2 text-muted'>
-                    {`${new Date(day.dt * 1000).getFullYear()} /
-                      ${new Date(day.dt * 1000).getMonth() + 1} / ${new Date(
-                      day.dt * 1000
-                    ).getDate()}`}
-                  </h6>
-                  <p className='card-text'>
-                    Mean Temperature: {convertTemp(day.temp.day)}
-                  </p>
-                  <p className='card-text'>
-                    Min Temperature: {convertTemp(day.temp.min)}
-                  </p>
-                  <p className='card-text'>
-                    Max Temperature: {convertTemp(day.temp.max)}
-                  </p>
-                </div>
-              </div>
-            ))
-          ) : (
-            <h1>Please, select a location first</h1>
-          )}
+        <div
+          className={`bg-success details-main-card d-flex flex-wrap justify-content-between ${
+            isFlipped ? 'is-flipped' : ''
+          }`}
+          onClick={() => {
+            dispatch(setIsFlipped())
+          }}
+        >
+          <div className='card__face card__face--front'>
+            <DetailsCardFace
+              dailyWeather={dailyWeather}
+              locationName={locationName}
+              convertTemp={convertTemp}
+              description={tempDescription}
+              isFlipped={isFlipped}
+            ></DetailsCardFace>
+          </div>
+          <div className='card__face card__face--back'>
+            <DetailsCardFace
+              dailyWeather={dailyWeather}
+              locationName={locationName}
+              convertTemp={convertTemp}
+              description={otherDescription}
+              isFlipped={!isFlipped}
+            ></DetailsCardFace>
+          </div>
         </div>
       </div>
     </>
