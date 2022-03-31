@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { getEnd, getStart, setEnd, setStart } from '../rtk/dateSlice'
-import { getWeatherDaily, setMeanTemp } from '../rtk/weatherSlice'
+import { getEnd, getStart, setEnd, setStart } from '../../rtk/dateSlice'
+import { getWeatherDaily, setMeanTemp } from '../../rtk/weatherSlice'
 
 const DetailsRange = () => {
   const dispatch = useDispatch()

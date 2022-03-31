@@ -1,9 +1,8 @@
 import { useSelector } from 'react-redux'
-import { getLocation } from '../rtk/locationSlice'
-import { getWeatherDaily, getTempUnit, getMeanTemp } from '../rtk/weatherSlice'
-import DetailsRange from './DetailsRange'
+import { getLocation } from '../../rtk/locationSlice'
+import { getWeatherDaily, getTempUnit } from '../../rtk/weatherSlice'
 
-const Details = () => {
+const DetailsCard = () => {
   /* location */
   const currentLocation = useSelector(getLocation)
   const locationName = currentLocation.payload.location.currentLocation.name
@@ -11,7 +10,6 @@ const Details = () => {
   /* TEMP */
   const dailyWeather = useSelector(getWeatherDaily)
   const tempUnit = useSelector(getTempUnit)
-  const meanTemp = useSelector(getMeanTemp)
 
   const convertTemp = a => {
     if (tempUnit === 'Celsius') {
@@ -23,15 +21,14 @@ const Details = () => {
     }
     return a
   }
-
   return (
     <>
-      <div className='d-flex'>
+      <div className='scene'>
         <div className='bg-success details-main-card d-flex flex-wrap justify-content-between '>
           {dailyWeather.length > 0 ? (
             dailyWeather.map(day => (
               <div
-                className='card d-flex flex-row my-2 dailyWeatherDiv'
+                className='card d-flex flex-row my-2'
                 style={{ width: '48%' }}
                 key={day.dt}
               >
@@ -59,17 +56,9 @@ const Details = () => {
             <h1>Please, select a location first</h1>
           )}
         </div>
-        <div className='details-calendar d-flex flex-column align-items-center'>
-          <h1 className='text-center'>
-            Select range of dates ton calculate average
-          </h1>
-          <DetailsRange></DetailsRange>
-          {/* <DetailsCalendar></DetailsCalendar> */}
-          <h2>average temp is: {convertTemp(meanTemp)}</h2>
-        </div>
       </div>
     </>
   )
 }
 
-export default Details
+export default DetailsCard

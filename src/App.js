@@ -1,7 +1,7 @@
 import { HashRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import Nav from './components/Nav'
-import Details from './components/Details'
+import Details from './components/./details/Details'
 import Home from './components/Home'
 import Map from './components/Map'
 import Settings from './components/Settings'

@@ -135,10 +135,12 @@ header {
 }
 
 /*  $$ Details */
-
-.details-main-card {
+.scene {
   width: 66%;
 }
+/* .details-main-card {
+  width: 66%;
+} */
 
 /* settings */
 
