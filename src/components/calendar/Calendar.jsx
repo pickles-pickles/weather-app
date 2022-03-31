@@ -24,7 +24,7 @@ const Calendar = () => {
             /* set days from today */
             dispatch(setDaysFromToday())
           }}
-          maxDate={addDays(new Date(), 8)}
+          maxDate={addDays(new Date(), 7)}
           minDate={addDays(new Date(), 0)}
         >
           <div style={{ color: 'red' }}>Don't forget to check the weather!</div>

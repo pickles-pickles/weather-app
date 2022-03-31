@@ -4,10 +4,10 @@ import weatherApiKey from '../../../apis/weatherApiKey'
 import { getLocation } from '../../../rtk/countriesSlice'
 import { getDate, getDaysFromToday } from '../../../rtk/dateSlice'
 import {
-  getWeather,
+  /* getWeather, */
   setMainWeather,
-  setWeather,
-  setTemp,
+  /* setWeather, */
+  /* setTemp, */
   setDailyWeather,
   setHourlyWeather,
   getMainWeather,
@@ -37,7 +37,7 @@ const MainCard = () => {
 
   /* weather */
 
-  const weather = useSelector(getWeather)
+  /* const weather = useSelector(getWeather) */
   const mainWeather = useSelector(getMainWeather)
   /* const temp = useSelector(getTemp) */
 
