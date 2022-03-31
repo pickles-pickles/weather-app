@@ -7,6 +7,14 @@ const getDefaultTempUnit = () => {
   } else return 'Celsius'
 }
 
+/* This slice follows a pattern of setters and geeters
+    When the components need access to a part of the state, they call the respective getter
+    When the components need to modify the state,  they call the respective setter
+    Names that DON'T start with "set" or "get", do NOT get or set anything,
+    but execute complementary operations, like, fe, converting units 
+    Other names than "set" and "get" as fine.
+*/
+
 const initialState = {
   weatherDaily: [],
   mainWeather: {},
@@ -56,7 +64,6 @@ export const {
   convertTemp,
   setMeanTemp
 } = weatherSlice.actions
-export const getWeather = state => state.weather.weather
 /* this info will be displayed in the main card  */
 export const getMainWeather = state => state.weather.mainWeather
 /* this info will be displayed in /details  */

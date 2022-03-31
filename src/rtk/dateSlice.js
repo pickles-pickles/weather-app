@@ -9,6 +9,13 @@ const getDefaultDaysFromToday = () => {
   } else return 0
 }
 
+/* This slice follows a pattern of setters and geeters
+    When the components need access to a part of the state, they call the respective getter
+    When the components need to modify the state,  they call the respective setter
+    Names that DON'T start with "set" or "get", do NOT get or set anything,
+    but execute complementary operations, like, fe, converting units 
+    Other names than "set" and "get" as fine.
+*/
 const initialState = {
   date: initDate, //string
   daysFromToday: getDefaultDaysFromToday(),
@@ -24,27 +31,19 @@ const dateSlice = createSlice({
   reducers: {
     setDate: (state, action) => {
       const newDate = action.payload
-      console.log('payload', newDate)
       state.date = newDate.toString()
-      console.log('is NOT null', state.date)
-
-      //state.date.date = action.payload
     },
 
     setDaysFromToday: state => {
       const oneDay = 24 * 60 * 60 * 1000 // hours*minutes*seconds*milliseconds
-      // parse today to number
+
       const todayInit = new Date()
       const todayStr = todayInit.toString()
-      const today = Date.parse(todayStr)
-      //parse date to number
-      const secondDate = Date.parse(state.date)
-      //subtract
-      const daysFromToday = Math.round(Math.abs((today - secondDate) / oneDay))
-      //pass to state
-      state.daysFromToday = daysFromToday
+      const today = Date.parse(todayStr) // parse today to number
+      const secondDate = Date.parse(state.date) //parse date to number
+      const daysFromToday = Math.round(Math.abs((today - secondDate) / oneDay)) //subtract
 
-      //const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay))
+      state.daysFromToday = daysFromToday //pass to state
     },
     setStart: (state, action) => {
       state.start = action.payload

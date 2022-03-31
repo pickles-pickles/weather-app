@@ -7,7 +7,9 @@ const initialState = {
   currentLocation: { name: '', lat: '', lon: '' },
   userLocation: { lat: '', lon: '' }
 }
-
+/* 
+This is not as clear as the other slices. Fix it, if there is time. ,,, make it follow the seter, getter pattern
+*/
 const countriesSlice = createSlice({
   name: 'location',
   initialState,
@@ -31,15 +33,6 @@ const countriesSlice = createSlice({
           if (stateCountryContinentName === continentName) {
             /* add country in continent sub */
             // !!
-            /* continent.submenu = [
-              ...continent.submenu,
-              { title: state.countries[i].name }
-            ] */
-            /* console.log(
-              state.countries[i].name,
-              state.countries[i].continent.name
-            ) */
-            /* console.log('continent submenu from slice', continent.submenu) */
             break
           }
         }
@@ -50,8 +43,6 @@ const countriesSlice = createSlice({
       //state = { ...state, cities: action.payload }
     },
     matchCities: state => {
-      console.log('la', state)
-
       const continents = state.menuItems[0]
       for (let i = 0; i < state.cities.length; i++) {
         for (let j = 0; j < continents.submenu.length; j++) {
@@ -59,8 +50,6 @@ const countriesSlice = createSlice({
             state.cities[i].country.continent.name ===
             continents.submenu[j].title
           ) {
-            // !! log for check
-            /*        console.log('lsls', state.cities[i].country.continent.name, i, j) */
             continents.submenu[j].submenu = [
               ...continents.submenu[j].submenu,
               { title: state.cities[i].name }
@@ -114,10 +103,3 @@ export const {
 export const getAllCountriesStats = state => state.location.countries
 export const getAllCitiesStats = state => state.location.cities
 export default countriesSlice.reducer
-
-/*     for (let i = 0; i < state.cities.length; i++) {
-        console.log('STATE CITIES', state.cities[i].name)
-        const citiesList = continents.submenu[]
-        for (let j = 0; j < array.length; j++) {
-        }
-      } */

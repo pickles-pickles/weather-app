@@ -6,6 +6,7 @@ import { setTempUnit } from '../rtk/weatherSlice'
 const Settings = () => {
   const dispatch = useDispatch()
 
+  /* setters */
   const setSettingsDate = e => {
     switch (e.target.innerText) {
       case 'Today':
@@ -47,14 +48,6 @@ const Settings = () => {
     }
   }
 
-  function getLocation () {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(setDefaultLocation)
-    } else {
-      console.log('user denied')
-    }
-  }
-
   function setDefaultLocation (position) {
     console.log(
       'Latitude: ' +
@@ -68,131 +61,161 @@ const Settings = () => {
     localStorage.setItem('defaultLat', lat.toString())
     localStorage.setItem('defaultLon', lon.toString())
   }
+  /* getters */
+  function getLocation () {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(setDefaultLocation)
+    } else {
+      console.log('user denied')
+    }
+  }
 
+  /* const  */
   return (
     <>
-      <div className='d-flex flex-column'>
-        {/* date */}
-        <h3>The default date will be</h3>
-        <div className='btn-group' role='group' aria-label='Basic example'>
-          {/* could have used a map for the btns, todo if i have time */}
+      <div className='row'>
+        <div className='col-md-6 col-12  d-flex flex-column'>
+          {/* date */}
+          <h3>The default date will be</h3>
+          <div className='btn-group' role='group' aria-label='Basic example'>
+            {/* could have used a map for the btns, todo if i have time */}
+            <button
+              type='button'
+              className='btn btn-primary'
+              onClick={e => {
+                setSettingsDate(e)
+              }}
+            >
+              Today
+            </button>
+            <button
+              type='button'
+              className='btn btn-primary'
+              onClick={e => {
+                setSettingsDate(e)
+              }}
+            >
+              Tomorrow
+            </button>
+            <button
+              type='button'
+              className='btn btn-primary'
+              onClick={e => {
+                setSettingsDate(e)
+              }}
+            >
+              +2 days
+            </button>
+            <button
+              type='button'
+              className='btn btn-primary'
+              onClick={e => {
+                setSettingsDate(e)
+              }}
+            >
+              +3 days
+            </button>
+            <button
+              type='button'
+              className='btn btn-primary'
+              onClick={e => {
+                setSettingsDate(e)
+              }}
+            >
+              +4 days
+            </button>
+            <button
+              type='button'
+              className='btn btn-primary'
+              onClick={e => {
+                setSettingsDate(e)
+              }}
+            >
+              +5 days
+            </button>
+            <button
+              type='button'
+              className='btn btn-primary'
+              onClick={e => {
+                setSettingsDate(e)
+              }}
+            >
+              +6 days
+            </button>
+            <button
+              type='button'
+              className='btn btn-primary'
+              onClick={e => {
+                setSettingsDate(e)
+              }}
+            >
+              +1 week
+            </button>
+          </div>
+          {/* temp */}
+          <h3>Select default temperature units</h3>
+          <select
+            className='form-select temp-units-form-select-at-settings'
+            aria-label='Temperature units'
+          >
+            <option selected={true}>Temperature units</option>
+            <option
+              value='Celsius'
+              onClick={e => {
+                dispatch(setTempUnit(e.target.value))
+                localStorage.setItem('defaultTempUnit', e.target.value)
+              }}
+            >
+              Celsius
+            </option>
+            <option
+              value='Fahrenheit'
+              onClick={e => {
+                dispatch(setTempUnit(e.target.value))
+                localStorage.setItem('defaultTempUnit', e.target.value)
+              }}
+            >
+              Fafrenheit
+            </option>
+          </select>
+          {/* location */}
+          <h3>The default location will be</h3>
           <button
-            type='button'
-            className='btn btn-primary'
-            onClick={e => {
-              setSettingsDate(e)
+            onClick={() => {
+              getLocation()
+              dispatch(setUserLocation(getLocation))
             }}
           >
-            Today
+            Current location
           </button>
           <button
-            type='button'
             className='btn btn-primary'
-            onClick={e => {
-              setSettingsDate(e)
+            onClick={() => {
+              localStorage.clear()
             }}
           >
-            Tomorrow
-          </button>
-          <button
-            type='button'
-            className='btn btn-primary'
-            onClick={e => {
-              setSettingsDate(e)
-            }}
-          >
-            +2 days
-          </button>
-          <button
-            type='button'
-            className='btn btn-primary'
-            onClick={e => {
-              setSettingsDate(e)
-            }}
-          >
-            +3 days
-          </button>
-          <button
-            type='button'
-            className='btn btn-primary'
-            onClick={e => {
-              setSettingsDate(e)
-            }}
-          >
-            +4 days
-          </button>
-          <button
-            type='button'
-            className='btn btn-primary'
-            onClick={e => {
-              setSettingsDate(e)
-            }}
-          >
-            +5 days
-          </button>
-          <button
-            type='button'
-            className='btn btn-primary'
-            onClick={e => {
-              setSettingsDate(e)
-            }}
-          >
-            +6 days
-          </button>
-          <button
-            type='button'
-            className='btn btn-primary'
-            onClick={e => {
-              setSettingsDate(e)
-            }}
-          >
-            +1 week
+            Clear Default Settings
           </button>
         </div>
-        {/* temp */}
-        <h3>Select default temperature units</h3>
-        <select
-          className='form-select temp-units-form-select-at-settings'
-          aria-label='Temperature units'
-        >
-          <option selected={true}>Temperature units</option>
-          <option
-            value='Celsius'
-            onClick={e => {
-              dispatch(setTempUnit(e.target.value))
-              localStorage.setItem('defaultTempUnit', e.target.value)
-            }}
-          >
-            Celsius
-          </option>
-          <option
-            value='Fahrenheit'
-            onClick={e => {
-              dispatch(setTempUnit(e.target.value))
-              localStorage.setItem('defaultTempUnit', e.target.value)
-            }}
-          >
-            Fafrenheit
-          </option>
-        </select>
-        {/* location */}
-        <h3>The default location will be</h3>
-        <button
-          onClick={() => {
-            getLocation()
-            dispatch(setUserLocation(getLocation))
-          }}
-        >
-          Current location
-        </button>
-        <button
-          className='btn btn-primary'
-          onClick={() => {
-            localStorage.clear()
-          }}
-        >
-          Clear Default Settings
-        </button>
+        <div className='col-md-6 col-12  d-flex flex-column'>
+          <h1>Current Settings</h1>
+          {/* SELECTED SETTINGS */}
+          <div class='card'>
+            <img src='...' className='card-img-top' alt='...' />
+            <div className='card-body'>
+              <h5 className='card-title'>Current Settings</h5>
+              <p className='card-text'>
+                Check your current settings. You can always change them through
+                the change default settings section
+              </p>
+            </div>
+            <ul className='list-group list-group-flush'>
+              <li className='list-group-item'>Default date: {}</li>
+              <li className='list-group-item'>A second item</li>
+              <li className='list-group-item'>A third item</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </>
   )
