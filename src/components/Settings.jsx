@@ -77,13 +77,18 @@ const Settings = () => {
     <>
       <div className='row'>
         <div className='col-md-6 col-12  d-flex flex-column'>
+          <h1 className='text-center'>Change Settings</h1>
           {/* date */}
-          <h3>The default date will be</h3>
-          <div className='btn-group' role='group' aria-label='Basic example'>
+          <h3 className='text-center'>The default date will be</h3>
+          <div
+            className='btn-group mb-2 flex-wrap'
+            role='group'
+            aria-label='Basic example'
+          >
             {/* could have used a map for the btns, todo if i have time */}
             <button
               type='button'
-              className='btn btn-primary'
+              className='btn btn-primary settings-date-btn'
               onClick={e => {
                 setSettingsDate(e)
               }}
@@ -92,7 +97,7 @@ const Settings = () => {
             </button>
             <button
               type='button'
-              className='btn btn-primary'
+              className='btn btn-primary settings-date-btn'
               onClick={e => {
                 setSettingsDate(e)
               }}
@@ -101,7 +106,7 @@ const Settings = () => {
             </button>
             <button
               type='button'
-              className='btn btn-primary'
+              className='btn btn-primary settings-date-btn'
               onClick={e => {
                 setSettingsDate(e)
               }}
@@ -110,7 +115,7 @@ const Settings = () => {
             </button>
             <button
               type='button'
-              className='btn btn-primary'
+              className='btn btn-primary settings-date-btn'
               onClick={e => {
                 setSettingsDate(e)
               }}
@@ -119,7 +124,7 @@ const Settings = () => {
             </button>
             <button
               type='button'
-              className='btn btn-primary'
+              className='btn btn-primary settings-date-btn'
               onClick={e => {
                 setSettingsDate(e)
               }}
@@ -128,7 +133,7 @@ const Settings = () => {
             </button>
             <button
               type='button'
-              className='btn btn-primary'
+              className='btn btn-primary settings-date-btn'
               onClick={e => {
                 setSettingsDate(e)
               }}
@@ -137,7 +142,7 @@ const Settings = () => {
             </button>
             <button
               type='button'
-              className='btn btn-primary'
+              className='btn btn-primary settings-date-btn'
               onClick={e => {
                 setSettingsDate(e)
               }}
@@ -146,7 +151,7 @@ const Settings = () => {
             </button>
             <button
               type='button'
-              className='btn btn-primary'
+              className='btn btn-primary settings-date-btn'
               onClick={e => {
                 setSettingsDate(e)
               }}
@@ -155,7 +160,7 @@ const Settings = () => {
             </button>
           </div>
           {/* temp */}
-          <h3>Select default temperature units</h3>
+          <h3 className='text-center mt-2'>Select default temperature units</h3>
           <select
             className='form-select temp-units-form-select-at-settings'
             aria-label='Temperature units'
@@ -181,8 +186,9 @@ const Settings = () => {
             </option>
           </select>
           {/* location */}
-          <h3>The default location will be</h3>
+          <h3 className='text-center mt-2'>The default location will be</h3>
           <button
+            className='btn btn-dark mt-4 mb-2'
             onClick={() => {
               getLocation()
               dispatch(setUserLocation(getLocation))
@@ -191,7 +197,7 @@ const Settings = () => {
             Current location
           </button>
           <button
-            className='btn btn-primary'
+            className='btn btn-danger'
             onClick={() => {
               localStorage.clear()
             }}

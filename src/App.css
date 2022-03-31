@@ -125,6 +125,8 @@ header {
 
 .temp-units-form-select-at-settings {
   width: 30%;
+  align-self: center;
+  justify-self: center;
 }
 
 /*  $$ Details */
@@ -138,4 +140,9 @@ header {
   /* max-height: 80px; */
   width: 40%;
   overflow: hidden;
+}
+
+.settings-date-btn:focus {
+  color: #0b5ed7;
+  background: #f2f2f2;
 }
