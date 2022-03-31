@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { getUserLocation, setUserLocation } from '../rtk/locationSlice'
+import { getUserLocation, setUserLocation } from '../../../rtk/locationSlice'
 
 const UserLocation = () => {
   const userLocation = useSelector(getUserLocation)
@@ -32,21 +32,28 @@ const UserLocation = () => {
   // ** if google maps , route to a different page or to the bottom of current
   return (
     <>
-      <h1>User Location</h1>
+      <h3 className='text-center'>User Location</h3>
       <button
+        className='btn btn-secondary mb-2'
         onClick={() => {
           getLocation()
           dispatch(setUserLocation(getLocation))
         }}
       >
-        Select current location & show temp(to be done)
+        Select current location
       </button>
 
       <Link to='/settings'>
-        <button>Change default Settings</button>
+        <button className='btn btn-secondary mb-2 mx-auto d-block'>
+          Change default Settings
+        </button>
       </Link>
-      <p>Current Location</p>
-      <p>{userLocation ? '' : 'No default location selected'}</p>
+      <p className='text-center'>Current Location</p>
+      <p className='text-center'>
+        {userLocation.lat
+          ? 'lat: ' + userLocation.lat + ' lon: ' + userLocation.lon
+          : 'No default location selected'}
+      </p>
     </>
   )
 }

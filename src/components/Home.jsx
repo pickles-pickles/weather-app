@@ -4,7 +4,7 @@ import /* useDispatch, */ /* useSelector */ 'react-redux'
 //import { addCountries, getAllCountriesStats } from '../rtk/locationSlice'
 import MainCard from './cards/mainCard/MainCard'
 import SideCard from './SideCard'
-import UserSidecard from './cards/UserSidecard'
+import UserSidecard from './cards/userSideCard/UserSidecard'
 /* keep the commentsed araes, in case we have time */
 const Home = () => {
   //const dispatch = useDispatch()
@@ -38,7 +38,6 @@ const Home = () => {
     <>
       <div className='d-flex w-100 justify-content-around'>
         <UserSidecard></UserSidecard>
-
         <MainCard></MainCard>
         <SideCard></SideCard>
       </div>

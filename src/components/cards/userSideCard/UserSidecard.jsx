@@ -1,10 +1,10 @@
-import Calendar from '../calendar/Calendar'
-import UserLocation from '../UserLocation'
+import Calendar from '../../calendar/Calendar'
+import UserLocation from './UserLocation'
 
 const UserSidecard = () => {
   return (
     <>
-      <div className='d-flex flex-column'>
+      <div className='d-flex flex-column user-sidecard'>
         <Calendar></Calendar>
         <UserLocation></UserLocation>
       </div>

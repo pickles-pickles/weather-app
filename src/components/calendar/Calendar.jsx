@@ -26,7 +26,9 @@ const Calendar = () => {
 
   return (
     <>
-      <div className='calendar'>
+      <div className='calendar w-100'>
+        <h3 className='text-center'>Weather for day:</h3>
+        <h3 className='text-center'> &darr;</h3>
         <DatePicker
           selected={startDate}
           onChange={date => {
