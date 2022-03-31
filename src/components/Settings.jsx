@@ -70,7 +70,6 @@ const Settings = () => {
     }
   }
 
-  /* const  */
   return (
     <>
       <div className='row'>
