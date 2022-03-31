@@ -6,7 +6,7 @@ import DetailsRange from './DetailsRange'
 const Details = () => {
   /* location */
   const currentLocation = useSelector(getLocation)
-  const locationName = currentLocation.payload.countries.currentLocation.name
+  const locationName = currentLocation.payload.location.currentLocation.name
 
   /* TEMP */
   const dailyWeather = useSelector(getWeatherDaily)
