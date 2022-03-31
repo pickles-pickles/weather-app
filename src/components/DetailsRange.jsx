@@ -1,14 +1,5 @@
-import { useRef, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  getEnd,
-  getStart,
-  getStartDate,
-  setEnd,
-  setMyEndDate,
-  setMyStartDate,
-  setStart
-} from '../rtk/dateSlice'
+import { getEnd, getStart, setEnd, setStart } from '../rtk/dateSlice'
 import { getWeatherDaily, setMeanTemp } from '../rtk/weatherSlice'
 
 const DetailsRange = () => {
@@ -47,6 +38,7 @@ const DetailsRange = () => {
     <>
       <h1>Get the average temperature for days:</h1>
       <p>From(days from today):</p>
+      {/* select the start date */}
       <select
         className='form-select'
         aria-label='select'
@@ -62,6 +54,7 @@ const DetailsRange = () => {
         ))}
       </select>
       <p>Range of days</p>
+      {/* select how many days */}
       <select
         className='form-select'
         aria-label='select'
@@ -76,6 +69,7 @@ const DetailsRange = () => {
           </option>
         ))}
       </select>
+      {/* send value to store */}
       <button
         onClick={() => {
           dispatch(setMeanTemp(meanTempToSend))

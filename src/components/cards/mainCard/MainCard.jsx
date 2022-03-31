@@ -1,19 +1,14 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import weatherApiKey from '../../../apis/weatherApiKey'
-import { getLocation } from '../../../rtk/countriesSlice'
+import { getLocation } from '../../../rtk/locationSlice'
 import { getDate, getDaysFromToday } from '../../../rtk/dateSlice'
 import {
-  /* getWeather, */
   setMainWeather,
-  /* setWeather, */
-  /* setTemp, */
   setDailyWeather,
   setHourlyWeather,
   getMainWeather,
   getTempUnit
-  /* convertTemp */
-  /* getTemp */
 } from '../../../rtk/weatherSlice'
 import TempUnitsSelect from './TempUnitsSelect'
 
@@ -21,25 +16,22 @@ const MainCard = () => {
   const dispatch = useDispatch()
   /* cords */
   const lat1 = useSelector(getLocation)
-  const lat = lat1.payload.countries.currentLocation.lat
+  const lat = lat1.payload.location.currentLocation.lat
   console.log('lat', lat)
   const lon1 = useSelector(getLocation)
-  const lon = lon1.payload.countries.currentLocation.lat
+  const lon = lon1.payload.location.currentLocation.lat
   const part = ''
 
   /* date */
   const date = useSelector(getDate)
   /* const date = date1.payload.date.date */
-  console.log('date in card', date)
 
   /* days from today */
   const daysFromToday = useSelector(getDaysFromToday)
 
   /* weather */
 
-  /* const weather = useSelector(getWeather) */
   const mainWeather = useSelector(getMainWeather)
-  /* const temp = useSelector(getTemp) */
 
   const fetchWeather = async () => {
     const request = await fetch(
@@ -66,11 +58,9 @@ const MainCard = () => {
 
   const convertTemp = a => {
     if (tempUnit === 'Celsius') {
-      console.log('Cel')
       a = (a - 273.15).toFixed(1)
     } else if (tempUnit === 'Fahrenheit') {
       a = (1.8 * (a - 273) + 32).toFixed(1)
-      console.log('fah')
     }
     return a
   }

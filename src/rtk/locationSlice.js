@@ -9,7 +9,7 @@ const initialState = {
 }
 
 const countriesSlice = createSlice({
-  name: 'countries',
+  name: 'location',
   initialState,
   reducers: {
     addCountries: (state, action) => {
@@ -26,7 +26,6 @@ const countriesSlice = createSlice({
         const continentsList = continents.submenu
         /* loop though the menu Items */
         for (let j = 0; j < continentsList.length; j++) {
-          const continent = continents.submenu[j]
           const continentName = continents.submenu[j].title
           /* if store continent === menu items continent name */
           if (stateCountryContinentName === continentName) {
@@ -112,8 +111,8 @@ export const {
   setUserLocation,
   getUserLocation
 } = countriesSlice.actions
-export const getAllCountriesStats = state => state.countries.countries
-export const getAllCitiesStats = state => state.countries.cities
+export const getAllCountriesStats = state => state.location.countries
+export const getAllCitiesStats = state => state.location.cities
 export default countriesSlice.reducer
 
 /*     for (let i = 0; i < state.cities.length; i++) {

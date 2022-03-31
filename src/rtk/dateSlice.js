@@ -46,14 +46,6 @@ const dateSlice = createSlice({
 
       //const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay))
     },
-    setMyStartDate: (state, action) => {
-      /* if (action.payload[0] !== null && action.payload[1] !== null) */
-      state.myStartDate = action.payload
-    },
-    setMyEndDate: (state, action) => {
-      /* if (action.payload[0] !== null && action.payload[1] !== null) */
-      state.myEndDate = action.payload
-    },
     setStart: (state, action) => {
       state.start = action.payload
     },
@@ -67,18 +59,12 @@ export const {
   setDate,
   setDaysFromToday,
   logDate,
-  setMyStartDate,
-  setMyEndDate,
   setStart,
   setEnd
 } = dateSlice.actions
 export const getDaysFromToday = state => state.date.daysFromToday
 export const getDate = state => state.date.date
-export const getStartDate = state => state.date.myStartDate
-export const getEndDate = state => state.date.myEndDate
 export const getStart = state => state.date.start
 export const getEnd = state => state.date.end
 
-/*   export const getAllCountriesStats = state => state.countries.countries
-  export const getAllCitiesStats = state => state.countries.cities */
 export default dateSlice.reducer

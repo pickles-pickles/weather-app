@@ -1,11 +1,11 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import countriesReducer from '../rtk/countriesSlice'
+import locationReducer from '../rtk/locationSlice'
 import dateReducer from './dateSlice'
 import weatherReducer from './weatherSlice'
 
 export const store = configureStore({
   reducer: combineReducers({
-    countries: countriesReducer,
+    location: locationReducer,
     date: dateReducer,
     weather: weatherReducer
   })

@@ -1,6 +1,5 @@
-import { useRef } from 'react'
 import { useDispatch } from 'react-redux'
-import { setUserLocation } from '../rtk/countriesSlice'
+import { setUserLocation } from '../rtk/locationSlice'
 import { setDaysFromToday } from '../rtk/dateSlice'
 import { setTempUnit } from '../rtk/weatherSlice'
 
@@ -76,10 +75,13 @@ const Settings = () => {
         {/* date */}
         <h3>The default date will be</h3>
         <div className='btn-group' role='group' aria-label='Basic example'>
+          {/* could have used a map for the btns, todo if i have time */}
           <button
             type='button'
             className='btn btn-primary'
-            onClick={e => console.log('today', e.target.innerText)}
+            onClick={e => {
+              setSettingsDate(e)
+            }}
           >
             Today
           </button>

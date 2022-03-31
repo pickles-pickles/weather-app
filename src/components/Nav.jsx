@@ -1,18 +1,15 @@
-//import MenuItems from './MenuItems'
-//import { menuItems } from '../menuItems'
 import MenuContinents from './MenuContinents'
-//import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   getAllCountriesStats,
   addCities,
   matchCities
-} from '../rtk/countriesSlice'
+} from '../rtk/locationSlice'
 import { Link } from 'react-router-dom'
 
 const Nav = () => {
-  const menuItems = useSelector(state => state.countries.menuItems)
+  const menuItems = useSelector(state => state.location.menuItems)
 
   /* FETCH COUNTRIES */
   const dispatch = useDispatch()
@@ -33,7 +30,7 @@ const Nav = () => {
     return data.results
   } */
 
-  /* FETCH CITIES */
+  /* FETCH CITIES ,,, poulation limit: >10^6 */
   const fetchCities = async () => {
     const where = encodeURIComponent(
       JSON.stringify({
@@ -53,17 +50,17 @@ const Nav = () => {
     )
     const data = await response.json() // Here you have the data that you need
     dispatch(addCities(data.results))
-    console.log('CITIES: ', data.results)
   }
 
-  const citiesTest = () => {
-    fetchCities().then(cities => {
+  /* match cities to countries / continents */
+  const citiesToMatch = () => {
+    fetchCities().then(() => {
       if (countriesMain !== []) dispatch(matchCities())
     })
   }
 
   useEffect(() => {
-    citiesTest()
+    citiesToMatch()
   }, [])
   /*  */
   return (

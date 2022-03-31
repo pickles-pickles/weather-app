@@ -1,35 +1,23 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllCountriesStats, findLocation } from '../rtk/countriesSlice'
+import { getAllCountriesStats, findLocation } from '../rtk/locationSlice'
 import ContinentsDropdown from './ContinentsDropdown'
 
 const MenuContinents = ({ items, depthLevel }) => {
   const dispatch = useDispatch()
-  const menuItems = useSelector(state => state.countries.menuItems[0].submenu)
   const [dropdown, setDropdown] = useState(false)
   const countriesMain = useSelector(getAllCountriesStats)
 
   let ref = useRef()
 
   /* handle the dropdown show and hide */
-  useEffect(() => {
-    /* ;(async () => {
-      dispatch(matchCountries)
-    })() */
-
-    const handler = event => {
-      if (dropdown && ref.current && !ref.current.contains(event.target)) {
-        setDropdown(false)
-      }
-    }
-  }, [dropdown])
 
   const onMouseEnter = () => {
     window.innerWidth > 960 && setDropdown(true)
   }
 
   const onMouseLeave = () => {
-    // !! if neede ,TEMP TRUE
+    // !! if need ,TEMP TRUE
     window.innerWidth > 960 && setDropdown(false)
   }
 
@@ -67,7 +55,6 @@ const MenuContinents = ({ items, depthLevel }) => {
           href='/#'
           onClick={() => {
             //!! set the items.title as location for weather api
-            console.log('clicked city: ', items.title)
             dispatch(findLocation(items.title))
           }}
         >

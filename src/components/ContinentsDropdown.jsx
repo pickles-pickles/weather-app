@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { getAllCountriesStats } from '../rtk/countriesSlice'
+import { getAllCountriesStats } from '../rtk/locationSlice'
 import MenuContinents from './MenuContinents'
 
 const ContinentsDropdown = ({ submenus, dropdown, depthLevel }) => {

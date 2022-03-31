@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { getUserLocation, setUserLocation } from '../rtk/countriesSlice'
+import { getUserLocation, setUserLocation } from '../rtk/locationSlice'
 
 const UserLocation = () => {
   const userLocation = useSelector(getUserLocation)
@@ -22,12 +22,6 @@ const UserLocation = () => {
   }
 
   function showPosition (position) {
-    console.log(
-      'Latitude: ' +
-        position.coords.latitude +
-        'Longitude: ' +
-        position.coords.longitude
-    )
     const lat = position.coords.latitude
     const lon = position.coords.longitude
     dispatch(setUserLocation({ lat: lat, lon: lon }))

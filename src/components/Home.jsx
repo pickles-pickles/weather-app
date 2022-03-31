@@ -5,8 +5,7 @@ import {
   addCountries,
   getAllCountriesStats,
   matchCountries
-} from '../rtk/countriesSlice'
-import Calendar from './calendar/Calendar'
+} from '../rtk/locationSlice'
 import Nav from './Nav'
 import MainCard from './cards/mainCard/MainCard'
 import SideCard from './SideCard'
@@ -15,7 +14,7 @@ import UserSidecard from './cards/UserSidecard'
 const Home = () => {
   const dispatch = useDispatch()
   const countriesMain = useSelector(getAllCountriesStats)
-  const menuItems = useSelector(state => state.countries.menuItems)
+  const menuItems = useSelector(state => state.location.menuItems)
 
   const fetchCountries = async () => {
     const response = await fetch(
@@ -39,14 +38,13 @@ const Home = () => {
     console.log('data.results[0].name:', data.results[0].name)
     return data.results
   }
-  const test = () => {
-    fetchCountries().then(countries => {
+  /* const test = () => {
+    fetchCountries().then(() => {
       if (countriesMain !== []) dispatch(matchCountries())
       console.log('menu items after match: ', menuItems)
     })
-  }
-  /* <CountriesListing></CountriesListing> */
-  /* <CityListing></CityListing> */
+  } */
+
   return (
     <>
       <Nav></Nav>

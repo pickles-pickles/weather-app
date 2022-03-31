@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+/* check the local storage */
 const getDefaultTempUnit = () => {
   if (localStorage.getItem('defaultTempUnit')) {
     return localStorage.getItem('defaultTempUnit')
@@ -10,8 +11,6 @@ const initialState = {
   weatherDaily: [],
   mainWeather: {},
   hourlyWeather: [],
-  /* tempUnits */
-  /* temp */
   temp: undefined,
   tempUnit: getDefaultTempUnit(),
   meanTemp: 0
@@ -24,7 +23,6 @@ const weatherSlice = createSlice({
     setDailyWeather: (state, action) => {
       state.weatherDaily = action.payload
     },
-    setWeather: (state, action) => {},
     setMainWeather: (state, action) => {
       if (state.weatherDaily.length > 0) {
         state.mainWeather = state.weatherDaily[action.payload]
@@ -51,7 +49,6 @@ const weatherSlice = createSlice({
 })
 
 export const {
-  setWeather,
   setMainWeather,
   setDailyWeather,
   setHourlyWeather,
@@ -68,14 +65,5 @@ export const getHourlyWeather = state => state.weather.hourlyWeather
 /* temp */
 export const getTempUnit = state => state.weather.tempUnit
 export const getMeanTemp = state => state.weather.meanTemp
-/* export const getTemp = (state, action) => {
-  if (state.weather.tempUnit === 'Celsius') {
-    action.payload = action.payload - 273.15
-  } else if (state.weather.tempUnit === 'Fahrenheit') {
-    action.payload = 1.8 * (action.payload - 273) + 32
-  }
-  return action.payload
-} */
-/*   export const getAllCountriesStats = state => state.countries.countries
-  export const getAllCitiesStats = state => state.countries.cities */
+
 export default weatherSlice.reducer

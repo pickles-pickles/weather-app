@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux'
-import { getLocation } from '../rtk/countriesSlice'
-import { getDate } from '../rtk/dateSlice'
+import { getLocation } from '../rtk/locationSlice'
 import { getWeatherDaily, getTempUnit, getMeanTemp } from '../rtk/weatherSlice'
 import DetailsRange from './DetailsRange'
 
