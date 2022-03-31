@@ -34,16 +34,21 @@ const dateSlice = createSlice({
       state.date = newDate.toString()
     },
 
-    setDaysFromToday: state => {
-      const oneDay = 24 * 60 * 60 * 1000 // hours*minutes*seconds*milliseconds
+    setDaysFromToday: (state, action) => {
+      if (action.payload) {
+        state.daysFromToday = action.payload
+      } else {
+        const oneDay = 24 * 60 * 60 * 1000 // hours*minutes*seconds*milliseconds
+        const todayInit = new Date()
+        const todayStr = todayInit.toString()
+        const today = Date.parse(todayStr) // parse today to number
+        const secondDate = Date.parse(state.date) //parse date to number
+        const daysFromToday = Math.round(
+          Math.abs((today - secondDate) / oneDay)
+        ) //subtract
 
-      const todayInit = new Date()
-      const todayStr = todayInit.toString()
-      const today = Date.parse(todayStr) // parse today to number
-      const secondDate = Date.parse(state.date) //parse date to number
-      const daysFromToday = Math.round(Math.abs((today - secondDate) / oneDay)) //subtract
-
-      state.daysFromToday = daysFromToday //pass to state
+        state.daysFromToday = daysFromToday //pass to state
+      }
     },
     setStart: (state, action) => {
       state.start = action.payload

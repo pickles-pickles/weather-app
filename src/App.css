@@ -132,3 +132,10 @@ header {
 .details-main-card {
   width: 66%;
 }
+
+/* settings */
+.settings-icon {
+  /* max-height: 80px; */
+  width: 40%;
+  overflow: hidden;
+}

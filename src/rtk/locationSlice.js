@@ -82,9 +82,6 @@ const countriesSlice = createSlice({
       }
 
       console.log('dispatched')
-    },
-    getUserLocation: state => {
-      return state.countries.userLocation
     }
   },
   extraReducers: {}
@@ -97,9 +94,11 @@ export const {
   matchCities,
   findLocation,
   getLocation,
-  setUserLocation,
-  getUserLocation
+  setUserLocation
 } = countriesSlice.actions
 export const getAllCountriesStats = state => state.location.countries
 export const getAllCitiesStats = state => state.location.cities
+export const getUserLocation = state => {
+  return state.location.userLocation
+}
 export default countriesSlice.reducer

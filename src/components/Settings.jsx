@@ -1,7 +1,8 @@
-import { useDispatch } from 'react-redux'
-import { setUserLocation } from '../rtk/locationSlice'
-import { setDaysFromToday } from '../rtk/dateSlice'
-import { setTempUnit } from '../rtk/weatherSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUserLocation, setUserLocation } from '../rtk/locationSlice'
+import { getDaysFromToday, setDaysFromToday } from '../rtk/dateSlice'
+import { getTempUnit, setTempUnit } from '../rtk/weatherSlice'
+import settingsIcon from './../assets/settings-icon.png'
 
 const Settings = () => {
   const dispatch = useDispatch()
@@ -70,6 +71,8 @@ const Settings = () => {
     }
   }
 
+  const daysFromToday = useSelector(getDaysFromToday)
+  const userLocation = useSelector(getUserLocation)
   return (
     <>
       <div className='row'>
@@ -200,18 +203,32 @@ const Settings = () => {
           <h1>Current Settings</h1>
           {/* SELECTED SETTINGS */}
           <div class='card'>
-            <img src='...' className='card-img-top' alt='...' />
+            <div className='card-img-top'>
+              <img src={settingsIcon} className=' settings-icon' alt='...' />
+            </div>
+
             <div className='card-body'>
-              <h5 className='card-title'>Current Settings</h5>
-              <p className='card-text'>
+              <h5 className='card-title text-center'>Current Settings</h5>
+              <p className='card-text text-center'>
                 Check your current settings. You can always change them through
                 the change default settings section
               </p>
             </div>
             <ul className='list-group list-group-flush'>
-              <li className='list-group-item'>Default date: {}</li>
-              <li className='list-group-item'>A second item</li>
-              <li className='list-group-item'>A third item</li>
+              <li className='list-group-item text-center '>
+                <p className='fw-bold'>Default days after today:</p>{' '}
+                {daysFromToday}
+              </li>
+              <li className='list-group-item text-center'>
+                <p className='fw-bold'>Default temperature unit is: </p>{' '}
+                {useSelector(getTempUnit)}
+              </li>
+              <li className='list-group-item text-center'>
+                <p className='fw-bold'>Default Location is: latitude:</p>
+                {userLocation.lat ? userLocation.lat : ' not set yet'},
+                <p className='fw-bold'>longitude:</p>
+                {userLocation.lon ? userLocation.lon : ' not set yet'}
+              </li>
             </ul>
           </div>
         </div>
