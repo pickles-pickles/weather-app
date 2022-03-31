@@ -136,7 +136,7 @@ header {
 
 /*  $$ Details */
 .scene {
-  width: 66%;
+  width: 100%;
   height: fit-content;
   perspective: 600px;
   border: 1px solid #ccc;

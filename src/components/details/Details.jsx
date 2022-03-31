@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux'
 import { getTempUnit, getMeanTemp } from '../../rtk/weatherSlice'
 import DetailsCard from './DetailsCard'
+import DetailsPlot from './DetailsPlot'
 import DetailsRange from './DetailsRange'
 
 const Details = () => {
@@ -24,7 +25,13 @@ const Details = () => {
   return (
     <>
       <div className='d-flex'>
-        <DetailsCard></DetailsCard>
+        <div className='d-flex flex-column' style={{ width: '66%' }}>
+          <h1 className='text-center'>
+            Details of daily weather if you click the cards.{' '}
+          </h1>
+          <DetailsCard></DetailsCard>
+        </div>
+
         <div className='details-calendar d-flex flex-column align-items-center'>
           <h1 className='text-center'>
             Select range of dates ton calculate average
@@ -32,6 +39,9 @@ const Details = () => {
           <DetailsRange></DetailsRange>
           {/* <DetailsCalendar></DetailsCalendar> */}
           <h2>average temp is: {convertTemp(meanTemp)}</h2>
+          <div style={{ width: '100%', overflow: 'scroll' }}>
+            <DetailsPlot></DetailsPlot>
+          </div>
         </div>
       </div>
     </>
