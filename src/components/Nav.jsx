@@ -9,6 +9,7 @@ import {
   addCities,
   matchCities
 } from '../rtk/countriesSlice'
+import { Link } from 'react-router-dom'
 
 const Nav = () => {
   const menuItems = useSelector(state => state.countries.menuItems)
@@ -69,9 +70,8 @@ const Nav = () => {
     <>
       <header>
         <div className='nav-area'>
-          <a href='/#' className='logo'>
-            Logo
-          </a>
+          <Link to='/'>Home</Link>
+
           <nav>
             <ul className='menus'>
               {menuItems.map((continent, index) => {
@@ -86,6 +86,8 @@ const Nav = () => {
               })}
             </ul>
           </nav>
+          <Link to='/settings'>Settings</Link>
+          <Link to='/details'>Details</Link>
         </div>
       </header>
     </>

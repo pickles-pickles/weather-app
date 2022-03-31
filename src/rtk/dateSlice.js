@@ -26,9 +26,7 @@ const dateSlice = createSlice({
 
       //state.date.date = action.payload
     },
-    getDate: state => {
-      return state.date.date
-    },
+
     setDaysFromToday: state => {
       const oneDay = 24 * 60 * 60 * 1000 // hours*minutes*seconds*milliseconds
       // parse today to number
@@ -47,8 +45,9 @@ const dateSlice = createSlice({
   }
 })
 
-export const { setDate, getDate, setDaysFromToday } = dateSlice.actions
+export const { setDate, setDaysFromToday } = dateSlice.actions
 export const getDaysFromToday = state => state.date.daysFromToday
+export const getDate = state => state.date.date
 /*   export const getAllCountriesStats = state => state.countries.countries
   export const getAllCitiesStats = state => state.countries.cities */
 export default dateSlice.reducer

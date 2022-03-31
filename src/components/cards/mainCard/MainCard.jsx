@@ -28,8 +28,8 @@ const MainCard = () => {
   const part = ''
 
   /* date */
-  const date1 = useSelector(getDate)
-  const date = date1.payload.date.date
+  const date = useSelector(getDate)
+  /* const date = date1.payload.date.date */
   console.log('date in card', date)
 
   /* days from today */
@@ -57,9 +57,9 @@ const MainCard = () => {
     }
   }
   //!! temp commented out
-  /* useEffect(() => {
+  useEffect(() => {
     fetchWeather()
-  }, [lat]) */
+  }, [lat])
 
   /* TEMP */
   const tempUnit = useSelector(getTempUnit)
