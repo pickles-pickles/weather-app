@@ -24,23 +24,25 @@ const Details = () => {
 
   return (
     <>
-      <div className='d-flex'>
-        <div className='d-flex flex-column' style={{ width: '66%' }}>
-          <h1 className='text-center'>
-            Details of daily weather if you click the cards.{' '}
-          </h1>
-          <DetailsCard></DetailsCard>
-        </div>
+      <div className='container-fluid'>
+        <div className='row '>
+          <div className=' col-12 col-md-7 order-2 order-md-1'>
+            <h1 className='text-center'>
+              Details of daily weather if you click the cards.{' '}
+            </h1>
+            <DetailsCard></DetailsCard>
+          </div>
 
-        <div className='details-calendar d-flex flex-column align-items-center'>
-          <h1 className='text-center'>
-            Select range of dates ton calculate average
-          </h1>
-          <DetailsRange></DetailsRange>
-          {/* <DetailsCalendar></DetailsCalendar> */}
-          <h2>average temp is: {convertTemp(meanTemp)}</h2>
-          <div style={{ width: '100%', overflow: 'scroll' }}>
-            <DetailsPlot></DetailsPlot>
+          <div className='details-calendar col-12 col-md-4 order-1 order-md-2'>
+            <h1 className='text-center'>
+              Select range of dates ton calculate average
+            </h1>
+            <DetailsRange></DetailsRange>
+            {/* <DetailsCalendar></DetailsCalendar> */}
+            <h2>average temp is: {convertTemp(meanTemp)}</h2>
+            <div style={{ width: '100%', overflow: 'scroll' }}>
+              <DetailsPlot></DetailsPlot>
+            </div>
           </div>
         </div>
       </div>

@@ -100,9 +100,9 @@ header {
 .calendar {
   width: 16%;
 }
-.details-calendar {
+/* .details-calendar {
   width: 45%;
-}
+} */
 /* $$ CARDS */
 
 /*  $$ USER SIDECARD */
@@ -137,7 +137,7 @@ header {
 /*  $$ Details */
 .scene {
   width: 100%;
-  height: fit-content;
+  height: 100%;
   perspective: 600px;
   border: 1px solid #ccc;
 }
