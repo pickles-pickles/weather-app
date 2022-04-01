@@ -85,6 +85,12 @@ const Nav = () => {
           </nav>
           <Link to='/settings'>Settings</Link>
           <Link to='/details'>Details</Link>
+          {/* CHECK IF THE USER IS ONLINE */}
+          {navigator.onLine ? null : (
+            <h4 style={{ color: 'red', fontSize: '24px', fontWeight: 'bold' }}>
+              You are offline
+            </h4>
+          )}
         </div>
       </header>
     </>
