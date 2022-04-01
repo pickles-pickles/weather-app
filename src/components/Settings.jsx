@@ -7,6 +7,17 @@ import settingsIcon from './../assets/settings-icon.png'
 const Settings = () => {
   const dispatch = useDispatch()
 
+  const btnTexts = [
+    'Today',
+    'Tomorrow',
+    '+2 days',
+    '+3 days',
+    '+4 days',
+    '+5 days',
+    '+6 days',
+    '+1 week'
+  ]
+
   /* setters */
   const setSettingsDate = e => {
     switch (e.target.innerText) {
@@ -83,81 +94,21 @@ const Settings = () => {
           <div
             className='btn-group mb-2 flex-wrap'
             role='group'
-            aria-label='Basic example'
+            aria-label='Button Group'
           >
+            {btnTexts.map(t => (
+              <button
+                type='button'
+                className='btn btn-primary settings-date-btn'
+                key={t}
+                onClick={e => {
+                  setSettingsDate(e)
+                }}
+              >
+                {t}
+              </button>
+            ))}
             {/* could have used a map for the btns, todo if i have time */}
-            <button
-              type='button'
-              className='btn btn-primary settings-date-btn'
-              onClick={e => {
-                setSettingsDate(e)
-              }}
-            >
-              Today
-            </button>
-            <button
-              type='button'
-              className='btn btn-primary settings-date-btn'
-              onClick={e => {
-                setSettingsDate(e)
-              }}
-            >
-              Tomorrow
-            </button>
-            <button
-              type='button'
-              className='btn btn-primary settings-date-btn'
-              onClick={e => {
-                setSettingsDate(e)
-              }}
-            >
-              +2 days
-            </button>
-            <button
-              type='button'
-              className='btn btn-primary settings-date-btn'
-              onClick={e => {
-                setSettingsDate(e)
-              }}
-            >
-              +3 days
-            </button>
-            <button
-              type='button'
-              className='btn btn-primary settings-date-btn'
-              onClick={e => {
-                setSettingsDate(e)
-              }}
-            >
-              +4 days
-            </button>
-            <button
-              type='button'
-              className='btn btn-primary settings-date-btn'
-              onClick={e => {
-                setSettingsDate(e)
-              }}
-            >
-              +5 days
-            </button>
-            <button
-              type='button'
-              className='btn btn-primary settings-date-btn'
-              onClick={e => {
-                setSettingsDate(e)
-              }}
-            >
-              +6 days
-            </button>
-            <button
-              type='button'
-              className='btn btn-primary settings-date-btn'
-              onClick={e => {
-                setSettingsDate(e)
-              }}
-            >
-              +1 week
-            </button>
           </div>
           {/* temp */}
           <h3 className='text-center mt-2'>Select default temperature units</h3>

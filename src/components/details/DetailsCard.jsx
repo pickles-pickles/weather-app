@@ -43,7 +43,7 @@ const DetailsCard = () => {
     <>
       <div className='scene'>
         <div
-          className={`bg-success details-main-card d-flex flex-wrap justify-content-between ${
+          className={` details-main-card d-flex flex-wrap justify-content-between ${
             isFlipped ? 'is-flipped' : ''
           }`}
           onClick={() => {

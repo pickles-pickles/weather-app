@@ -28,14 +28,14 @@ const Details = () => {
         <div className='row '>
           <div className=' col-12 col-md-7 order-2 order-md-1'>
             <h1 className='text-center'>
-              Details of daily weather if you click the cards.{' '}
+              Details of daily weather, if you click the cards.{' '}
             </h1>
             <DetailsCard></DetailsCard>
           </div>
 
           <div className='details-calendar col-12 col-md-4 order-1 order-md-2'>
             <h1 className='text-center'>
-              Select range of dates ton calculate average
+              Select range of dates to calculate average
             </h1>
             <DetailsRange></DetailsRange>
             {/* <DetailsCalendar></DetailsCalendar> */}
