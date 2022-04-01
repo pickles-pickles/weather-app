@@ -104,6 +104,9 @@ a:hover {
   left: 100%;
   top: -7px;
 }
+
+/*  $$ HOME CONTENT */
+
 /*  $$ CALENDAR */
 .calendar {
   width: 16%;
@@ -186,4 +189,24 @@ a:hover {
 .settings-date-btn:focus {
   color: #0b5ed7;
   background: #f2f2f2;
+}
+
+@media screen and (max-width: 768px) {
+  .home-content {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .main-card {
+    width: 85%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .main-card-p {
+    font-size: 75%;
+  }
+  .temp-units-form-select {
+    width: 40%;
+    font-size: 80%;
+  }
 }

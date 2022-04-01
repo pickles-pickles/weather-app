@@ -80,10 +80,10 @@ const MainCard = () => {
         {mainWeather.moonrise ? (
           <ul className='list-group list-group-flush'>
             <li className='list-group-item'>
-              <p className='main-card-p'>lat {lat}</p>
+              <p className='main-card-p'>lat: {lat}</p>
             </li>
             <li className='list-group-item'>
-              <p className='main-card-p'>lon {lon}</p>
+              <p className='main-card-p'>lon: {lon}</p>
             </li>
             <li className='list-group-item'>
               <p className='main-card-p'>days from today: {daysFromToday} </p>

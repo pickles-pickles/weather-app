@@ -36,7 +36,7 @@ const Home = () => {
 
   return (
     <>
-      <div className='d-flex w-100 justify-content-around'>
+      <div className='d-flex w-100 justify-content-around home-content'>
         <UserSidecard></UserSidecard>
         <MainCard></MainCard>
         <SideCard></SideCard>
