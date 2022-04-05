@@ -33,7 +33,6 @@ const Calendar = () => {
           selected={startDate}
           onChange={date => {
             setStartDate(date)
-            console.log('selected date', startDate)
             /* set date */
             dispatch(setDate(date.toString()))
             /* set days from today */

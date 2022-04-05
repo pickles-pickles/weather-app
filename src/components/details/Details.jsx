@@ -13,11 +13,9 @@ const Details = () => {
 
   const convertTemp = a => {
     if (tempUnit === 'Celsius') {
-      console.log('Cel')
       a = (a - 273.15).toFixed(1)
     } else if (tempUnit === 'Fahrenheit') {
       a = (1.8 * (a - 273) + 32).toFixed(1)
-      console.log('fah')
     }
     return a
   }

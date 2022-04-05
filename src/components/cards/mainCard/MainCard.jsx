@@ -17,7 +17,7 @@ const MainCard = () => {
   /* cords */
   const lat1 = useSelector(getLocation)
   const lat = lat1.payload.location.currentLocation.lat
-  console.log('lat', lat)
+
   const lon1 = useSelector(getLocation)
   const lon = lon1.payload.location.currentLocation.lat
   const part = ''

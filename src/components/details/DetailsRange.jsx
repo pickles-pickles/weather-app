@@ -22,7 +22,6 @@ const DetailsRange = () => {
     if (dailyWeather.length > 1) {
       for (let i = s; i < e; i++) {
         temp = dailyWeather[i].temp.day
-        console.log('temp', temp)
         temps += temp
         count++
       }
@@ -32,7 +31,6 @@ const DetailsRange = () => {
   }
 
   let meanTempToSend = calcMeanTemp()
-  console.log(meanTempToSend)
 
   return (
     <>
