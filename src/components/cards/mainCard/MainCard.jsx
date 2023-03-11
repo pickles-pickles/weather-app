@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import weatherApiKey from '../../../apis/weatherApiKey'
 import { getLocation } from '../../../rtk/locationSlice'
 import { getDate, getDaysFromToday } from '../../../rtk/dateSlice'
 import {
@@ -35,7 +34,7 @@ const MainCard = () => {
 
   const fetchWeather = async () => {
     const request = await fetch(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=${part}&appid=${weatherApiKey}`
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=${part}&appid=${process.env.REACT_APP_API_KEY}`
     )
     const stats = await request.json()
 
