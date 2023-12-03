@@ -10,6 +10,7 @@ import {
   getTempUnit
 } from '../../../rtk/weatherSlice'
 import TempUnitsSelect from './TempUnitsSelect'
+import { convertTemp } from '../../../helpers/otherHelpers'
 
 const MainCard = () => {
   const dispatch = useDispatch()
@@ -47,22 +48,13 @@ const MainCard = () => {
       dispatch(setHourlyWeather(stats.hourly))
     }
   }
-  //!! temp commented out
+
   useEffect(() => {
     fetchWeather()
   }, [lat])
 
   /* TEMP */
   const tempUnit = useSelector(getTempUnit)
-
-  const convertTemp = a => {
-    if (tempUnit === 'Celsius') {
-      a = (a - 273.15).toFixed(1)
-    } else if (tempUnit === 'Fahrenheit') {
-      a = (1.8 * (a - 273) + 32).toFixed(1)
-    }
-    return a
-  }
 
   return (
     <>
@@ -90,32 +82,34 @@ const MainCard = () => {
             <li className='list-group-item'>
               <p className='main-card-p'>
                 Temp:{' '}
-                {mainWeather.temp ? convertTemp(mainWeather.temp.day) : null}
+                {mainWeather.temp
+                  ? convertTemp(mainWeather.temp.day, tempUnit)
+                  : null}
               </p>
             </li>
             <li className='list-group-item'>
               <p className='main-card-p'>
                 Temp min:{' '}
-                {mainWeather.temp ? convertTemp(mainWeather.temp.min) : null}
+                {mainWeather.temp &&
+                  convertTemp(mainWeather.temp.min, tempUnit)}
               </p>
             </li>
             <li className='list-group-item'>
               <p className='main-card-p'>
                 Temp max:{' '}
-                {mainWeather.temp ? convertTemp(mainWeather.temp.max) : null}
+                {mainWeather.temp &&
+                  convertTemp(mainWeather.temp.max, tempUnit)}
               </p>
             </li>
             <li className='list-group-item d-flex flex-row align-items-center'>
               {' '}
               <p className='main-card-p'>
-                Sky:{' '}
-                {mainWeather.temp ? mainWeather.weather[0].description : null}
+                Sky: {mainWeather.temp && mainWeather.weather[0].description}
               </p>
               <img
                 src={
-                  mainWeather.temp
-                    ? require(`../../../assets/weather-icons/${mainWeather.weather[0].icon}.png`)
-                    : null
+                  mainWeather.temp &&
+                  require(`../../../assets/weather-icons/${mainWeather.weather[0].icon}.png`)
                 }
                 alt=''
                 width={'40px'}
@@ -124,13 +118,12 @@ const MainCard = () => {
             </li>
             <li className='list-group-item'>
               <p className='main-card-p'>
-                Wind speed: {mainWeather.temp ? mainWeather.wind_speed : null}
+                Wind speed: {mainWeather.temp && mainWeather.wind_speed}
               </p>
             </li>
             <li className='list-group-item'>
               <p className='main-card-p'>
-                Humidity:{' '}
-                {mainWeather.temp ? mainWeather.humidity + ' %' : null}{' '}
+                Humidity: {mainWeather.temp && mainWeather.humidity + ' %'}{' '}
               </p>
             </li>
           </ul>
@@ -138,17 +131,6 @@ const MainCard = () => {
           <p className='card-text text-center'>Select a city</p>
         )}
       </div>
-
-      {/*  <img
-          src={
-            mainWeather.temp
-              ? require(`${weatherIcons}${mainWeather.weather[0].icon.toString()}.png`)
-              : null
-          }
-          alt=''
-          width={'20px'}
-          height={'20px'}
-        /> */}
     </>
   )
 }

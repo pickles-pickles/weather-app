@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
@@ -19,10 +19,6 @@ const Calendar = () => {
   const result = today.setDate(today.getDate() + daysFromToday)
   const dispatch = useDispatch()
   const [startDate, setStartDate] = useState(result)
-  /* change the state default date */
-  useEffect(() => {
-    /* setDate(1) */
-  }, [])
 
   return (
     <>
