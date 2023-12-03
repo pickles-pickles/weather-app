@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { getIsFlipped, setIsFlipped } from '../../rtk/animSlice'
 import { getLocation } from '../../rtk/locationSlice'
-import { getWeatherDaily, getTempUnit } from '../../rtk/weatherSlice'
+import { getWeatherDaily } from '../../rtk/weatherSlice'
 import DetailsCardFace from './DetailsCardFace'
+import { convertTemp } from '../../helpers/otherHelpers'
 
 const DetailsCard = () => {
   const dispatch = useDispatch()
@@ -13,18 +14,6 @@ const DetailsCard = () => {
 
   /* TEMP */
   const dailyWeather = useSelector(getWeatherDaily)
-  const tempUnit = useSelector(getTempUnit)
-
-  const convertTemp = a => {
-    if (tempUnit === 'Celsius') {
-      console.log('Cel')
-      a = (a - 273.15).toFixed(1)
-    } else if (tempUnit === 'Fahrenheit') {
-      a = (1.8 * (a - 273) + 32).toFixed(1)
-      console.log('fah')
-    }
-    return a
-  }
 
   const isFlipped = useSelector(getIsFlipped)
   const tempDescription = [

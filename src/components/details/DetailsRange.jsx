@@ -4,8 +4,6 @@ import { getWeatherDaily, setMeanTemp } from '../../rtk/weatherSlice'
 
 const DetailsRange = () => {
   const dispatch = useDispatch()
-  /*   const startDate = useSelector(getStartDate)
-  console.log(startDate, typeof startDate) */
   const start = useSelector(getStart)
   const end = useSelector(getEnd)
   const dailyWeather = useSelector(getWeatherDaily)
@@ -63,7 +61,12 @@ const DetailsRange = () => {
           }}
         >
           {options.map(option => (
-            <option value={option} key={option} disabled={start + option > 7}>
+            <option
+              value={option}
+              key={option}
+              disabled={start + option > 7}
+              className={`${start + option > 7 && 'option-disabled'}`}
+            >
               {option}
             </option>
           ))}

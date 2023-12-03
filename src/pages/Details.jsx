@@ -6,8 +6,6 @@ import DetailsRange from '../components/details/DetailsRange'
 import { convertTemp } from '../helpers/otherHelpers'
 
 const Details = () => {
-  /* location */
-
   /* TEMP */
   const tempUnit = useSelector(getTempUnit)
   const meanTemp = useSelector(getMeanTemp)
@@ -28,7 +26,6 @@ const Details = () => {
               Select range of dates to calculate average
             </h1>
             <DetailsRange></DetailsRange>
-            {/* <DetailsCalendar></DetailsCalendar> */}
             <h2>average temp is: {convertTemp(meanTemp, tempUnit)}</h2>
             <div style={{ width: '100%', overflow: 'scroll' }}>
               <DetailsPlot></DetailsPlot>

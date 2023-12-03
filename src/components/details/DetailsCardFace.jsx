@@ -1,3 +1,6 @@
+import { useSelector } from 'react-redux'
+import { getTempUnit } from '../../rtk/weatherSlice'
+
 const DetailsCardFace = ({
   dailyWeather,
   locationName,
@@ -5,6 +8,7 @@ const DetailsCardFace = ({
   description,
   isFlipped
 }) => {
+  const tempUnit = useSelector(getTempUnit)
   return (
     <>
       {dailyWeather.length > 0 ? (
@@ -26,7 +30,7 @@ const DetailsCardFace = ({
                 <p className='card-text' key={pair.myKey}>
                   {pair.myVal}:{' '}
                   {pair.isTemp
-                    ? convertTemp(day.temp[pair.myKey])
+                    ? convertTemp(day.temp[pair.myKey], tempUnit)
                     : day[pair.myKey]}
                 </p>
               ))}

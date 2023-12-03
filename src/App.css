@@ -168,6 +168,9 @@ a:hover {
 .card__face--back {
   transform: rotateY(180deg);
 }
+.option-disabled {
+  color: #dcd7d7;
+}
 /* $$ to flip */
 .is-flipped {
   transform: rotateY(180deg);
