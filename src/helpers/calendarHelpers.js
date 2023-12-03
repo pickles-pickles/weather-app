@@ -37,3 +37,19 @@ export const calcMeanTemp = (
     return temps / count
   }
 }
+
+// TODO: refactor. check args types
+export const calcMeanTempForPlot = (s, e, dailyWeather) => {
+  let temps = 0,
+    count = 0,
+    temp = 0
+  if (dailyWeather.length > 0) {
+    for (let i = s; i <= e; i++) {
+      temp = dailyWeather[i].temp.day
+      temps += temp
+      count++
+    }
+    return temps / count
+  }
+  return undefined
+}

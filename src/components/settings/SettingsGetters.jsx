@@ -12,7 +12,7 @@ export const SettingsGetters = () => {
     <>
       <h1 className='text-center'>Current Settings</h1>
       {/* SELECTED SETTINGS */}
-      <div class='card'>
+      <div className='card'>
         <div className='card-img-top'>
           <img src={settingsIcon} className=' settings-icon' alt='...' />
         </div>

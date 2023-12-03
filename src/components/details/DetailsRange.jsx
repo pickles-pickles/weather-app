@@ -76,15 +76,6 @@ const DetailsRange = () => {
             </option>
           ))}
         </select>
-        {/* send value to store */}
-        <button
-          className='btn btn-secondary d-block mx-auto my-2'
-          onClick={() => {
-            dispatch(setMeanTemp(meanTempToSend))
-          }}
-        >
-          Calculate Average Temp
-        </button>
       </div>
     </>
   )

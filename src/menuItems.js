@@ -1,6 +1,6 @@
 export const menuItems = [
   {
-    title: 'Continents',
+    title: 'Location',
     submenu: [
       {
         title: 'Africa',
