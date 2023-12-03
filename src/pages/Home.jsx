@@ -1,7 +1,7 @@
 import React from 'react'
-import MainCard from './cards/mainCard/MainCard'
-import SideCard from './SideCard'
-import CalendarAndLocationSidecard from './cards/calendarAndLocationSidecard/CalendarAndLocationSidecard'
+import MainCard from '../components/cards/mainCard/MainCard'
+import SideCard from '../components/SideCard'
+import CalendarAndLocationSidecard from '../components/cards/calendarAndLocationSidecard/CalendarAndLocationSidecard'
 const Home = () => {
   return (
     <>

@@ -1,9 +1,9 @@
 import { HashRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import Nav from './components/Nav'
-import Details from './components/./details/Details'
-import Home from './components/Home'
-import Settings from './components/Settings'
+import Details from './pages/Details'
+import Home from './pages/Home'
+import Settings from './pages/Settings'
 
 function App () {
   return (

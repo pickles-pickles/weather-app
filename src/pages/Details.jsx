@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux'
-import { getTempUnit, getMeanTemp } from '../../rtk/weatherSlice'
-import DetailsCard from './DetailsCard'
-import DetailsPlot from './DetailsPlot'
-import DetailsRange from './DetailsRange'
+import { getTempUnit, getMeanTemp } from '../rtk/weatherSlice'
+import DetailsCard from '../components/details/DetailsCard'
+import DetailsPlot from '../components/details/DetailsPlot'
+import DetailsRange from '../components/details/DetailsRange'
 
 const Details = () => {
   /* location */
