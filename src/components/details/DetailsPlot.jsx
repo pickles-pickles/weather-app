@@ -1,55 +1,65 @@
 import React from 'react'
-
-import Plot from 'react-plotly.js'
 import { useSelector } from 'react-redux'
 import { getPlotEndDate, getPlotStartDate } from '../../rtk/dateSlice'
 import { getWeatherDaily } from '../../rtk/weatherSlice'
+import ReactEcharts from 'echarts-for-react'
 
 const DetailsPlot = () => {
   const start = useSelector(getPlotStartDate)
   const end = useSelector(getPlotEndDate)
   const dailyWeather = useSelector(getWeatherDaily)
-
+  let data = [],
+    xData = []
   const setData = () => {
-    const data = []
-    if (dailyWeather.length > 1) {
+    data = []
+    xData = []
+    if (dailyWeather.length > 0) {
       for (let i = start; i <= end; i++) {
         data.push(dailyWeather[i].temp.day)
-        console.log('data added')
+        xData.push(i)
       }
     }
-
     return data
   }
 
-  const max_of_data = Math.max.apply(Math, setData())
-  const min_of_data = Math.min.apply(Math, setData())
+  setData()
+
+  const min_of_data = Math.min.apply(Math, data)
+
+  const option = {
+    legend: {
+      data: ['day temp']
+    },
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'shadow'
+      }
+    },
+    xAxis: {
+      type: 'category',
+      data: xData,
+      axisTick: {
+        alignWithLabel: true
+      }
+    },
+    yAxis: {
+      type: 'value',
+      min: min_of_data - 1
+    },
+    series: [
+      {
+        data: data,
+        type: 'bar',
+        name: 'day temp'
+      }
+    ]
+  }
 
   return (
     <>
-      {dailyWeather.length > 1 ? (
-        <Plot
-          data={[{ type: 'bar', x: [0, 1, 2, 3, 4, 5, 6, 7], y: setData() }]}
-          layout={{
-            width: 'auto',
-            height: 'auto',
-            title: 'Temps for the selected range',
-            xaxis: {
-              showline: true,
-              domain: [0, 10],
-              title: 'Days after today',
-              showgrid: true,
-              rangemode: 'nonnegative'
-            },
-            yaxis: {
-              showline: true,
-              title: 'Temp(K)',
-              rangemode: 'normal',
-              range: [min_of_data, max_of_data]
-            },
-            showlegend: true
-          }}
-        />
+      {dailyWeather.length > 0 ? (
+        <ReactEcharts option={option} />
       ) : (
         <p className='text-center'>'Waiting for the data to plot'</p>
       )}
