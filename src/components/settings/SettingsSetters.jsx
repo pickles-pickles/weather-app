@@ -1,8 +1,8 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { setUserLocation } from '../rtk/locationSlice'
-import { setDaysFromToday } from '../rtk/dateSlice'
-import { setTempUnit } from '../rtk/weatherSlice'
+import { setUserLocation } from '../../rtk/locationSlice'
+import { setDaysFromToday } from '../../rtk/dateSlice'
+import { setTempUnit } from '../../rtk/weatherSlice'
 
 export const SettingsSetters = () => {
   const dispatch = useDispatch()

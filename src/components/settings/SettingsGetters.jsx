@@ -1,6 +1,6 @@
 import React from 'react'
-import { getTempUnit } from '../rtk/weatherSlice'
-import settingsIcon from './../assets/settings-icon.png'
+import { getTempUnit } from '../../rtk/weatherSlice'
+import settingsIcon from './../../assets/settings-icon.png'
 import { useSelector } from 'react-redux'
 import { getDaysFromToday } from '../../rtk/dateSlice'
 import { getUserLocation } from '../../rtk/locationSlice'
