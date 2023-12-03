@@ -2,12 +2,12 @@ import React from 'react'
 
 import Plot from 'react-plotly.js'
 import { useSelector } from 'react-redux'
-import { getEnd, getStart } from '../../rtk/dateSlice'
+import { getPlotEndDate, getPlotStartDate } from '../../rtk/dateSlice'
 import { getWeatherDaily } from '../../rtk/weatherSlice'
 
 const DetailsPlot = () => {
-  const start = useSelector(getStart)
-  const end = useSelector(getEnd)
+  const start = useSelector(getPlotStartDate)
+  const end = useSelector(getPlotEndDate)
   const dailyWeather = useSelector(getWeatherDaily)
 
   const setData = () => {

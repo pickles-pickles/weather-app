@@ -42,14 +42,6 @@ const weatherSlice = createSlice({
     setTempUnit: (state, action) => {
       state.tempUnit = action.payload
     },
-    convertTemp: (state, action) => {
-      if (state.tempUnit === 'Celsius') {
-        action.payload -= 273.15
-      } else if (state.tempUnit === 'Fahrenheit') {
-        action.payload = 1.8 * (action.payload - 273) + 32
-      }
-      return action.payload
-    },
     setMeanTemp: (state, action) => {
       state.meanTemp = action.payload
     }
@@ -61,7 +53,6 @@ export const {
   setDailyWeather,
   setHourlyWeather,
   setTempUnit,
-  convertTemp,
   setMeanTemp
 } = weatherSlice.actions
 /* this info will be displayed in the main card  */

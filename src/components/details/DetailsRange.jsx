@@ -1,11 +1,16 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { getEnd, getStart, setEnd, setStart } from '../../rtk/dateSlice'
+import {
+  getPlotEndDate,
+  getPlotStartDate,
+  setPlotEndDate,
+  setPlotStartDate
+} from '../../rtk/dateSlice'
 import { getWeatherDaily, setMeanTemp } from '../../rtk/weatherSlice'
 
 const DetailsRange = () => {
   const dispatch = useDispatch()
-  const start = useSelector(getStart)
-  const end = useSelector(getEnd)
+  const start = useSelector(getPlotStartDate)
+  const end = useSelector(getPlotEndDate)
   const dailyWeather = useSelector(getWeatherDaily)
 
   const options = [0, 1, 2, 3, 4, 5, 6, 7]
@@ -41,7 +46,7 @@ const DetailsRange = () => {
           aria-label='select'
           value={start}
           onChange={e => {
-            handleChange(e, setStart)
+            handleChange(e, setPlotStartDate)
           }}
         >
           {options.map(option => (
@@ -57,7 +62,7 @@ const DetailsRange = () => {
           aria-label='select'
           value={end}
           onChange={e => {
-            handleChange(e, setEnd)
+            handleChange(e, setPlotEndDate)
           }}
         >
           {options.map(option => (

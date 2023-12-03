@@ -21,8 +21,8 @@ const initialState = {
   daysFromToday: getDefaultDaysFromToday(),
   myStartDate: 0,
   myEndDate: 7,
-  start: 0,
-  end: 7
+  plotStartDate: 0,
+  plotEndDate: 7
 }
 
 const dateSlice = createSlice({
@@ -50,11 +50,11 @@ const dateSlice = createSlice({
         state.daysFromToday = daysFromToday //pass to state
       }
     },
-    setStart: (state, action) => {
-      state.start = action.payload
+    setPlotStartDate: (state, action) => {
+      state.plotStartDate = action.payload
     },
-    setEnd: (state, action) => {
-      state.end = action.payload
+    setPlotEndDate: (state, action) => {
+      state.plotEndDate = action.payload
     }
   }
 })
@@ -63,12 +63,12 @@ export const {
   setDate,
   setDaysFromToday,
   logDate,
-  setStart,
-  setEnd
+  setPlotStartDate,
+  setPlotEndDate
 } = dateSlice.actions
 export const getDaysFromToday = state => state.date.daysFromToday
 export const getDate = state => state.date.date
-export const getStart = state => state.date.start
-export const getEnd = state => state.date.end
+export const getPlotStartDate = state => state.date.plotStartDate
+export const getPlotEndDate = state => state.date.plotEndDate
 
 export default dateSlice.reducer
