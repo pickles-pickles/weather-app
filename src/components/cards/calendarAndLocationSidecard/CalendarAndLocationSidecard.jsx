@@ -1,7 +1,7 @@
 import Calendar from '../../calendar/Calendar'
 import UserLocation from './UserLocation'
 
-const UserSidecard = () => {
+const CalendarAndLocationSidecard = () => {
   return (
     <>
       <div className='d-flex flex-column user-sidecard'>
@@ -12,4 +12,4 @@ const UserSidecard = () => {
   )
 }
 
-export default UserSidecard
+export default CalendarAndLocationSidecard
