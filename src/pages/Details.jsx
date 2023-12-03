@@ -26,8 +26,12 @@ const Details = () => {
               Select range of dates to calculate average
             </h1>
             <DetailsRange></DetailsRange>
-            <h2>average temp is: {convertTemp(meanTemp, tempUnit)}</h2>
-            <div style={{ width: '100%', overflow: 'scroll' }}>
+            <h2>
+              average temp is: {convertTemp(meanTemp, tempUnit)} {tempUnit}
+            </h2>
+            <div
+              style={{ width: '100%', overflow: 'scroll', marginTop: '50px' }}
+            >
               <DetailsPlot></DetailsPlot>
             </div>
           </div>

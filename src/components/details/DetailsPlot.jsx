@@ -45,7 +45,11 @@ const DetailsPlot = () => {
     },
     yAxis: {
       type: 'value',
-      min: min_of_data - 1
+      min: min_of_data - 1,
+      name: 'Temp (K)',
+      nameTextStyle: {
+        align: 'right'
+      }
     },
     series: [
       {
