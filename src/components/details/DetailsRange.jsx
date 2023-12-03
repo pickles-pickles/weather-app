@@ -55,7 +55,7 @@ const DetailsRange = () => {
             </option>
           ))}
         </select>
-        <p>Range of days</p>
+        <p>To(days from today):</p>
         {/* select how many days */}
         <select
           className='form-select'
@@ -69,8 +69,8 @@ const DetailsRange = () => {
             <option
               value={option}
               key={option}
-              disabled={start + option > 7}
-              className={`${start + option > 7 && 'option-disabled'}`}
+              disabled={start > option}
+              className={`${start > option && 'option-disabled'}`}
             >
               {option}
             </option>
