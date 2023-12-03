@@ -3,6 +3,7 @@ import { getTempUnit, getMeanTemp } from '../rtk/weatherSlice'
 import DetailsCard from '../components/details/DetailsCard'
 import DetailsPlot from '../components/details/DetailsPlot'
 import DetailsRange from '../components/details/DetailsRange'
+import { convertTemp } from '../helpers/otherHelpers'
 
 const Details = () => {
   /* location */
@@ -10,15 +11,6 @@ const Details = () => {
   /* TEMP */
   const tempUnit = useSelector(getTempUnit)
   const meanTemp = useSelector(getMeanTemp)
-
-  const convertTemp = a => {
-    if (tempUnit === 'Celsius') {
-      a = (a - 273.15).toFixed(1)
-    } else if (tempUnit === 'Fahrenheit') {
-      a = (1.8 * (a - 273) + 32).toFixed(1)
-    }
-    return a
-  }
 
   return (
     <>
@@ -37,7 +29,7 @@ const Details = () => {
             </h1>
             <DetailsRange></DetailsRange>
             {/* <DetailsCalendar></DetailsCalendar> */}
-            <h2>average temp is: {convertTemp(meanTemp)}</h2>
+            <h2>average temp is: {convertTemp(meanTemp, tempUnit)}</h2>
             <div style={{ width: '100%', overflow: 'scroll' }}>
               <DetailsPlot></DetailsPlot>
             </div>

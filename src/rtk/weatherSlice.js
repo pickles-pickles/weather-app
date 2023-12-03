@@ -21,7 +21,7 @@ const initialState = {
   hourlyWeather: [],
   temp: undefined,
   tempUnit: getDefaultTempUnit(),
-  meanTemp: 0
+  meanTemp: undefined
 }
 
 const weatherSlice = createSlice({
