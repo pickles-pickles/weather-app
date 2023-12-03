@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { getIsFlipped, setIsFlipped } from '../../rtk/animSlice'
 import { getLocation } from '../../rtk/locationSlice'
-import { getWeatherDaily } from '../../rtk/weatherSlice'
-import DetailsCardFace from './DetailsCardFace'
+import { getTempUnit, getWeatherDaily } from '../../rtk/weatherSlice'
 import { convertTemp } from '../../helpers/otherHelpers'
 
 const DetailsCard = () => {
@@ -17,9 +16,9 @@ const DetailsCard = () => {
 
   const isFlipped = useSelector(getIsFlipped)
   const tempDescription = [
-    { myKey: 'day', myVal: 'Mean Temperature: ', isTemp: true },
-    { myKey: 'min', myVal: 'Min Temperature: ', isTemp: true },
-    { myKey: 'max', myVal: 'Max Temperature: ', isTemp: true }
+    { myKey: 'day', myVal: 'Day Temperat.: ', isTemp: true },
+    { myKey: 'min', myVal: 'Min Temperat.: ', isTemp: true },
+    { myKey: 'max', myVal: 'Max Temperat.: ', isTemp: true }
   ]
 
   const otherDescription = [
@@ -28,36 +27,72 @@ const DetailsCard = () => {
     { myKey: 'wind_speed', myVal: 'Wind Speed:', isTemp: false }
   ]
 
+  const tempUnit = useSelector(getTempUnit)
   return (
     <>
       <div className='scene'>
         <div
-          className={` details-main-card d-flex flex-wrap justify-content-between ${
-            isFlipped ? 'is-flipped' : ''
-          }`}
+          className={`  d-flex flex-wrap justify-content-between `}
           onClick={() => {
             dispatch(setIsFlipped())
           }}
         >
-          <div className='card__face card__face--front'>
-            <DetailsCardFace
-              dailyWeather={dailyWeather}
-              locationName={locationName}
-              convertTemp={convertTemp}
-              description={tempDescription}
-              isFlipped={isFlipped}
-            ></DetailsCardFace>
-          </div>
-          <div className='card__face card__face--back'>
-            <DetailsCardFace
-              dailyWeather={dailyWeather}
-              locationName={locationName}
-              convertTemp={convertTemp}
-              description={otherDescription}
-              isFlipped={!isFlipped}
-            ></DetailsCardFace>
-          </div>
+          {dailyWeather.length > 0 &&
+            !isFlipped &&
+            dailyWeather.map(day => (
+              <div
+                className='card d-flex flex-row flex-wrap my-2 '
+                key={day.dt}
+              >
+                <div className='card-body'>
+                  <h5 className='card-title'>{locationName}</h5>
+                  <h6 className='card-subtitle mb-2 text-muted'>
+                    {`${new Date(day.dt * 1000).getFullYear()} /
+                      ${new Date(day.dt * 1000).getMonth() + 1} / ${new Date(
+                      day.dt * 1000
+                    ).getDate()}`}
+                  </h6>
+                  {tempDescription.map(pair => (
+                    <p className='card-text' key={pair.myKey}>
+                      {pair.myVal}:{' '}
+                      {pair.isTemp
+                        ? convertTemp(day.temp[pair.myKey], tempUnit)
+                        : day[pair.myKey]}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            ))}
+          {dailyWeather.length > 0 &&
+            isFlipped &&
+            dailyWeather.map(day => (
+              <div
+                className='card  d-flex flex-row flex-wrap my-2'
+                key={day.dt}
+              >
+                <div className='card-body'>
+                  <h5 className='card-title'>{locationName}</h5>
+                  <h6 className='card-subtitle mb-2 text-muted'>
+                    {`${new Date(day.dt * 1000).getFullYear()} /
+                      ${new Date(day.dt * 1000).getMonth() + 1} / ${new Date(
+                      day.dt * 1000
+                    ).getDate()}`}
+                  </h6>
+                  {otherDescription.map(pair => (
+                    <p className='card-text' key={pair.myKey}>
+                      {pair.myVal}:{' '}
+                      {pair.isTemp
+                        ? convertTemp(day.temp[pair.myKey], tempUnit)
+                        : day[pair.myKey]}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            ))}
         </div>
+        {!dailyWeather.length && (
+          <h3 className='text-center bg-warning'>Select Location</h3>
+        )}
       </div>
     </>
   )

@@ -152,6 +152,7 @@ a:hover {
   position: relative;
   transition: transform 1s;
   transform-style: preserve-3d;
+  background: #75b4e3;
 }
 .card__face {
   position: absolute;

@@ -15,8 +15,8 @@ const DetailsCardFace = ({
         dailyWeather.map(day => (
           <div
             className='card d-flex flex-row flex-wrap my-2'
-            /* style={{ width: '40%' }} */
             key={day.dt}
+            style={{ background: 'red' }}
           >
             <div className='card-body'>
               <h5 className='card-title'>{locationName}</h5>

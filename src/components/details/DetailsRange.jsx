@@ -83,7 +83,7 @@ const DetailsRange = () => {
             dispatch(setMeanTemp(meanTempToSend))
           }}
         >
-          Calculate mean Temp
+          Calculate Average Temp
         </button>
       </div>
     </>
