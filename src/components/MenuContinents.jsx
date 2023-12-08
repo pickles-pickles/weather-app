@@ -31,7 +31,7 @@ const MenuContinents = ({ items, depthLevel }) => {
       onMouseLeave={onMouseLeave}
     >
       {/* if there is items submenu, show it, else show the title */}
-      {items.submenu && countriesMain !== [] ? (
+      {items.submenu && countriesMain.length > 0 ? (
         /* submenu */
         <>
           <button

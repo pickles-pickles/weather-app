@@ -55,7 +55,7 @@ const Nav = () => {
   /* match cities to countries / continents */
   const citiesToMatch = () => {
     fetchCities().then(() => {
-      if (countriesMain !== []) dispatch(matchCities())
+      if (countriesMain.length > 0) dispatch(matchCities())
     })
   }
 
