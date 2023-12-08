@@ -1,12 +1,11 @@
 import { useState, useRef } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getAllCountriesStats, findLocation } from '../rtk/locationSlice'
+import { useDispatch } from 'react-redux'
+import { findLocation } from '../rtk/locationSlice'
 import ContinentsDropdown from './ContinentsDropdown'
 
 const MenuContinents = ({ items, depthLevel }) => {
   const dispatch = useDispatch()
   const [dropdown, setDropdown] = useState(false)
-  const countriesMain = useSelector(getAllCountriesStats)
 
   let ref = useRef()
 
@@ -31,7 +30,7 @@ const MenuContinents = ({ items, depthLevel }) => {
       onMouseLeave={onMouseLeave}
     >
       {/* if there is items submenu, show it, else show the title */}
-      {items.submenu && countriesMain.length > 0 ? (
+      {items.submenu ? (
         /* submenu */
         <>
           <button
