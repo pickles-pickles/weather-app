@@ -66,6 +66,8 @@ const countriesSlice = createSlice({
           /* set current loc cords */
           state.currentLocation.lat = state.cities[i].location.latitude
           state.currentLocation.lon = state.cities[i].location.longitude
+        } else {
+          console.log('else')
         }
       }
     },
