@@ -15,21 +15,6 @@ const Nav = () => {
   const dispatch = useDispatch()
   const countriesMain = useSelector(getAllCountriesStats)
 
-  /* const fetchCountries = async () => {
-    const response = await fetch(
-      'https://parseapi.back4app.com/classes/Continentscountriescities_Country?limit=200&order=name&include=continent&excludeKeys=capital,phone,native,currency,shape',
-      {
-        headers: {
-          'X-Parse-Application-Id': 'Q0dHBgFgmlqMswwkCmcsxcqwMXb7RoecFMbKcMpi', // This is your app's application id
-          'X-Parse-REST-API-Key': 'ok8GCKXuljmd6GqowPgig4OXReviYtijpsl4gP9n' // This is your app's REST API key
-        }
-      }
-    )
-    const data = await response.json() // Here you have the data that you need
-    dispatch(addCountries(data.results))
-    return data.results
-  } */
-
   /* FETCH CITIES ,,, poulation limit: >10^6 */
   const fetchCities = async () => {
     const where = encodeURIComponent(
