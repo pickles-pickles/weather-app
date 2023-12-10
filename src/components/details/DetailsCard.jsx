@@ -9,7 +9,7 @@ const DetailsCard = () => {
 
   /* location */
   const currentLocation = useSelector(getLocation)
-  const locationName = currentLocation.payload.location.currentLocation.name
+  const locationName = currentLocation.name
 
   /* TEMP */
   const dailyWeather = useSelector(getWeatherDaily)

@@ -15,11 +15,9 @@ import { convertTemp } from '../../../helpers/otherHelpers'
 const MainCard = () => {
   const dispatch = useDispatch()
   /* cords */
-  const lat1 = useSelector(getLocation)
-  const lat = lat1.payload.location.currentLocation.lat
+  const lat = useSelector(getLocation).lat
 
-  const lon1 = useSelector(getLocation)
-  const lon = lon1.payload.location.currentLocation.lat
+  const lon = useSelector(getLocation).lon
   const part = ''
 
   /* date */

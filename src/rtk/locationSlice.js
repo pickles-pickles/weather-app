@@ -58,7 +58,7 @@ const countriesSlice = createSlice({
         }
       }
     },
-    findLocation: (state, action) => {
+    setLocation: (state, action) => {
       for (let i = 0; i < state.cities.length; i++) {
         if (action.payload === state.cities[i].name) {
           /* set current loc name */
@@ -92,12 +92,12 @@ export const {
   matchCountries,
   addCities,
   matchCities,
-  findLocation,
-  getLocation,
+  setLocation,
   setUserLocation
 } = countriesSlice.actions
 export const getAllCountriesStats = state => state.location.countries
 export const getAllCitiesStats = state => state.location.cities
+export const getLocation = state => state.location.currentLocation
 export const getUserLocation = state => {
   return state.location.userLocation
 }
