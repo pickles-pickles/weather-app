@@ -59,16 +59,19 @@ const countriesSlice = createSlice({
       }
     },
     setLocation: (state, action) => {
-      for (let i = 0; i < state.cities.length; i++) {
-        if (action.payload === state.cities[i].name) {
-          /* set current loc name */
-          state.currentLocation.name = state.cities[i].name
-          /* set current loc cords */
-          state.currentLocation.lat = state.cities[i].location.latitude
-          state.currentLocation.lon = state.cities[i].location.longitude
-        } else {
-          console.log('else')
+      //if(state.)
+      if (state.cities.length) {
+        for (let i = 0; i < state.cities.length; i++) {
+          if (action.payload === state.cities[i].name) {
+            /* set current loc name */
+            state.currentLocation.name = state.cities[i].name
+            /* set current loc cords */
+            state.currentLocation.lat = state.cities[i].location.latitude
+            state.currentLocation.lon = state.cities[i].location.longitude
+          }
         }
+      } else {
+        console.log('else')
       }
     },
     setUserLocation: (state, action) => {

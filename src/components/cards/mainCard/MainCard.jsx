@@ -1,15 +1,18 @@
 import { useSelector } from 'react-redux'
 import { getLocation } from '../../../rtk/locationSlice'
 import { getDate, getDaysFromToday } from '../../../rtk/dateSlice'
-import { getMainWeather, getTempUnit } from '../../../rtk/weatherSlice'
+import {
+  getFullWeather,
+  getMainWeather,
+  getTempUnit
+} from '../../../rtk/weatherSlice'
 import TempUnitsSelect from './TempUnitsSelect'
 import { convertTemp } from '../../../helpers/otherHelpers'
 
 const MainCard = () => {
+  const location = useSelector(getLocation)
   /* cords */
-  const lat = useSelector(getLocation).lat
-
-  const lon = useSelector(getLocation).lon
+  const { lat, lon, name } = location
 
   /* date */
   const date = useSelector(getDate)
@@ -19,7 +22,7 @@ const MainCard = () => {
   const daysFromToday = useSelector(getDaysFromToday)
 
   /* weather */
-
+  const weather = useSelector(getFullWeather)
   const mainWeather = useSelector(getMainWeather)
   /* 
   useEffect(() => {
@@ -45,10 +48,10 @@ const MainCard = () => {
         {mainWeather.moonrise ? (
           <ul className='list-group list-group-flush'>
             <li className='list-group-item'>
-              <p className='main-card-p'>lat: {lat}</p>
+              <p className='main-card-p'>lat: {weather.lat}</p>
             </li>
             <li className='list-group-item'>
-              <p className='main-card-p'>lon: {lon}</p>
+              <p className='main-card-p'>lon: {weather.lon}</p>
             </li>
             <li className='list-group-item'>
               <p className='main-card-p'>days from today: {daysFromToday} </p>

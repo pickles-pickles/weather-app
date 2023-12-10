@@ -1,7 +1,11 @@
 /* import { useEffect } from 'react' */
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { getUserLocation, setUserLocation } from '../../../rtk/locationSlice'
+import {
+  getUserLocation,
+  setLocation,
+  setUserLocation
+} from '../../../rtk/locationSlice'
 import {
   fetchWeather,
   getMainWeather,
@@ -38,6 +42,7 @@ const UserLocation = () => {
     const lat = position.coords.latitude
     const lon = position.coords.longitude
     dispatch(setUserLocation({ lat: lat, lon: lon }))
+    dispatch(setLocation({ name: 'device location', lat: lat, lon: lon }))
     //dispatch(setUserLocation())
     dispatch(fetchWeather({ lat, lon }, ''))
     //dispatch(setMainWeather(daysFromToday))

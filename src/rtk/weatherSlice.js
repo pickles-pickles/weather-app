@@ -27,6 +27,7 @@ export const fetchWeather = createAsyncThunk(
 */
 
 const initialState = {
+  weather: {},
   weatherDaily: [],
   mainWeather: {},
   hourlyWeather: [],
@@ -70,6 +71,7 @@ const weatherSlice = createSlice({
 
       .addCase(fetchWeather.fulfilled, (state, action) => {
         //state.user = action.payload
+        state.weather = action.payload
         state.weatherDaily = action.payload.daily
         state.hourlyWeather = action.payload.hourly
         state.mainWeather = action.payload.daily
@@ -90,6 +92,8 @@ export const {
   setTempUnit,
   setMeanTemp
 } = weatherSlice.actions
+//the data respponse from the API
+export const getFullWeather = state => state.weather.weather
 /* this info will be displayed in the main card  */
 export const getMainWeather = state => state.weather.mainWeather
 /* this info will be displayed in /details  */
