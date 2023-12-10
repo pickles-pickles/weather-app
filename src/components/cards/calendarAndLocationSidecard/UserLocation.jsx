@@ -6,11 +6,7 @@ import {
   setLocation,
   setUserLocation
 } from '../../../rtk/locationSlice'
-import {
-  fetchWeather,
-  getMainWeather,
-  getWeatherDaily
-} from '../../../rtk/weatherSlice'
+import { fetchWeather } from '../../../rtk/weatherSlice'
 
 const UserLocation = () => {
   // ** geolocation is async, refactor properly
@@ -18,13 +14,6 @@ const UserLocation = () => {
   // * set to state
   // * fetch weather properly
   const userLocation = useSelector(getUserLocation)
-  const dailyWeather = useSelector(getWeatherDaily)
-  const mainWeather = useSelector(getMainWeather)
-
-  /* useEffect(() => {
-    console.log('userLocation', userLocation)
-    console.log('userLocation lat', userLocation.lat)
-  }, []) */
 
   const dispatch = useDispatch()
 
@@ -41,17 +30,16 @@ const UserLocation = () => {
   async function success (position) {
     const lat = position.coords.latitude
     const lon = position.coords.longitude
-    dispatch(setUserLocation({ lat: lat, lon: lon }))
-    dispatch(setLocation({ name: 'device location', lat: lat, lon: lon }))
-    //dispatch(setUserLocation())
+    dispatch(setUserLocation({ lat: lat.toFixed(4), lon: lon.toFixed(4) }))
+    dispatch(
+      setLocation({
+        name: 'device location',
+        lat: lat.toFixed(4),
+        lon: lon.toFixed(4)
+      })
+    )
     dispatch(fetchWeather({ lat, lon }, ''))
-    //dispatch(setMainWeather(daysFromToday))
-    console.log('location, state', { lat, lon }, userLocation)
-    console.log('main weather, daily weather', await mainWeather, dailyWeather)
   }
-  // *ask for location in an async way
-  // * set to state
-  // * fetch weather properly
 
   // ** handle denial
   // ** let the user insert default location  // input with cords or google maps

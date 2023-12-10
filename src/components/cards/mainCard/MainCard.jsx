@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux'
-import { getLocation } from '../../../rtk/locationSlice'
 import { getDate, getDaysFromToday } from '../../../rtk/dateSlice'
 import {
   getFullWeather,
@@ -10,13 +9,8 @@ import TempUnitsSelect from './TempUnitsSelect'
 import { convertTemp } from '../../../helpers/otherHelpers'
 
 const MainCard = () => {
-  const location = useSelector(getLocation)
-  /* cords */
-  const { lat, lon, name } = location
-
   /* date */
   const date = useSelector(getDate)
-  /* const date = date1.payload.date.date */
 
   /* days from today */
   const daysFromToday = useSelector(getDaysFromToday)

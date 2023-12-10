@@ -69,7 +69,7 @@ export const SettingsSetters = () => {
     )
     const lat = position.coords.latitude
     const lon = position.coords.longitude
-    dispatch(setUserLocation({ lat: lat, lon: lon }))
+    dispatch(setUserLocation({ lat: lat.toFixed(4), lon: lon.toFixed(4) }))
     localStorage.setItem('defaultLat', lat.toString())
     localStorage.setItem('defaultLon', lon.toString())
   }

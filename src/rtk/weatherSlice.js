@@ -70,14 +70,12 @@ const weatherSlice = createSlice({
       })
 
       .addCase(fetchWeather.fulfilled, (state, action) => {
-        //state.user = action.payload
         state.weather = action.payload
         state.weatherDaily = action.payload.daily
         state.hourlyWeather = action.payload.hourly
         state.mainWeather = action.payload.daily
           ? action.payload.daily[getDefaultDaysFromToday()]
           : {}
-        console.log('weather fetch successful ', action.payload)
         state.isLoading = false
         state.success = true
         state.error = false
