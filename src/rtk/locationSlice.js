@@ -69,9 +69,6 @@ const countriesSlice = createSlice({
         }
       }
     },
-    getLocation: state => {
-      return state.countries.currentLocation
-    },
     setUserLocation: (state, action) => {
       if (navigator.geolocation) {
         console.log('allowed')
