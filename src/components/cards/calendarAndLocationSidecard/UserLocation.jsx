@@ -4,7 +4,12 @@ import { Link } from 'react-router-dom'
 import { getUserLocation, setUserLocation } from '../../../rtk/locationSlice'
 
 const UserLocation = () => {
+  // ** geolocation is async, refactor properly
+  // *ask for location in an async way
+  // * set to state
+  // * fetch weather properly
   const userLocation = useSelector(getUserLocation)
+
   useEffect(() => {
     console.log('userLocation', userLocation)
     console.log('userLocation lat', userLocation.lat)
@@ -15,18 +20,24 @@ const UserLocation = () => {
   // ** ask for user location permission
   function getLocation () {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition)
+      navigator.geolocation.getCurrentPosition(success)
+      console.log('user geolocation', navigator.geolocation)
     } else {
       console.log('user denied')
     }
   }
 
-  function showPosition (position) {
+  function success (position) {
     const lat = position.coords.latitude
     const lon = position.coords.longitude
     dispatch(setUserLocation({ lat: lat, lon: lon }))
-    return { lat: position.coords.latitude, lon: position.coords.longitude }
+
+    console.log('location, state', { lat, lon }, userLocation)
   }
+  // *ask for location in an async way
+  // * set to state
+  // * fetch weather properly
+
   // ** handle denial
   // ** let the user insert default location  // input with cords or google maps
   // ** if google maps , route to a different page or to the bottom of current
@@ -37,7 +48,6 @@ const UserLocation = () => {
         className='btn btn-secondary mb-2'
         onClick={() => {
           getLocation()
-          dispatch(setUserLocation(getLocation))
         }}
       >
         Select current location

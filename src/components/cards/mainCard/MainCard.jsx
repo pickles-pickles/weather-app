@@ -4,8 +4,6 @@ import { getLocation } from '../../../rtk/locationSlice'
 import { getDate, getDaysFromToday } from '../../../rtk/dateSlice'
 import {
   setMainWeather,
-  setDailyWeather,
-  setHourlyWeather,
   getMainWeather,
   getTempUnit,
   fetchWeather
