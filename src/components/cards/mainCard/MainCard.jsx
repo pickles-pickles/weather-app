@@ -1,18 +1,11 @@
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { getLocation } from '../../../rtk/locationSlice'
 import { getDate, getDaysFromToday } from '../../../rtk/dateSlice'
-import {
-  setMainWeather,
-  getMainWeather,
-  getTempUnit,
-  fetchWeather
-} from '../../../rtk/weatherSlice'
+import { getMainWeather, getTempUnit } from '../../../rtk/weatherSlice'
 import TempUnitsSelect from './TempUnitsSelect'
 import { convertTemp } from '../../../helpers/otherHelpers'
 
 const MainCard = () => {
-  const dispatch = useDispatch()
   /* cords */
   const lat = useSelector(getLocation).lat
 
@@ -28,11 +21,12 @@ const MainCard = () => {
   /* weather */
 
   const mainWeather = useSelector(getMainWeather)
-
+  /* 
   useEffect(() => {
     dispatch(fetchWeather({ lat, lon }, ''))
-    dispatch(setMainWeather(daysFromToday))
-  }, [lat])
+    console.log('effetc: lat has changed', lat)
+    //dispatch(setMainWeather(daysFromToday))
+  }, [loc]) */
 
   /* TEMP */
   const tempUnit = useSelector(getTempUnit)
@@ -48,7 +42,6 @@ const MainCard = () => {
           </p>
           <TempUnitsSelect></TempUnitsSelect>
         </div>
-
         {mainWeather.moonrise ? (
           <ul className='list-group list-group-flush'>
             <li className='list-group-item'>

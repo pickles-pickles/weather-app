@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { getWeather } from '../apis/services'
+import { getDefaultDaysFromToday } from '../helpers/calendarHelpers'
 
 /* check the local storage */
 const getDefaultTempUnit = () => {
@@ -71,6 +72,9 @@ const weatherSlice = createSlice({
         //state.user = action.payload
         state.weatherDaily = action.payload.daily
         state.hourlyWeather = action.payload.hourly
+        state.mainWeather = action.payload.daily
+          ? action.payload.daily[getDefaultDaysFromToday()]
+          : {}
         console.log('weather fetch successful ', action.payload)
         state.isLoading = false
         state.success = true

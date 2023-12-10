@@ -53,3 +53,9 @@ export const calcMeanTempForPlot = (s, e, dailyWeather) => {
   }
   return undefined
 }
+
+export const getDefaultDaysFromToday = () => {
+  if (localStorage.getItem('defaultDaysFromToday')) {
+    return parseInt(localStorage.getItem('defaultDaysFromToday'))
+  } else return 0
+}

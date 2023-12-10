@@ -1,13 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { getDefaultDaysFromToday } from '../helpers/calendarHelpers'
 
 const newDate = new Date()
 const initDate = newDate.toString()
-
-const getDefaultDaysFromToday = () => {
-  if (localStorage.getItem('defaultDaysFromToday')) {
-    return parseInt(localStorage.getItem('defaultDaysFromToday'))
-  } else return 0
-}
 
 /* This slice follows a pattern of setters and geeters
     When the components need access to a part of the state, they call the respective getter

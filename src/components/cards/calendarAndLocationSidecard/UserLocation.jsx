@@ -1,9 +1,12 @@
-import { useEffect } from 'react'
+/* import { useEffect } from 'react' */
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getUserLocation, setUserLocation } from '../../../rtk/locationSlice'
-import { fetchWeather, setMainWeather } from '../../../rtk/weatherSlice'
-import { getDaysFromToday } from '../../../rtk/dateSlice'
+import {
+  fetchWeather,
+  getMainWeather,
+  getWeatherDaily
+} from '../../../rtk/weatherSlice'
 
 const UserLocation = () => {
   // ** geolocation is async, refactor properly
@@ -11,12 +14,13 @@ const UserLocation = () => {
   // * set to state
   // * fetch weather properly
   const userLocation = useSelector(getUserLocation)
-  const daysFromToday = useSelector(getDaysFromToday)
+  const dailyWeather = useSelector(getWeatherDaily)
+  const mainWeather = useSelector(getMainWeather)
 
-  useEffect(() => {
+  /* useEffect(() => {
     console.log('userLocation', userLocation)
     console.log('userLocation lat', userLocation.lat)
-  }, [])
+  }, []) */
 
   const dispatch = useDispatch()
 
@@ -30,14 +34,15 @@ const UserLocation = () => {
     }
   }
 
-  function success (position) {
+  async function success (position) {
     const lat = position.coords.latitude
     const lon = position.coords.longitude
     dispatch(setUserLocation({ lat: lat, lon: lon }))
     //dispatch(setUserLocation())
     dispatch(fetchWeather({ lat, lon }, ''))
-    dispatch(setMainWeather(daysFromToday))
+    //dispatch(setMainWeather(daysFromToday))
     console.log('location, state', { lat, lon }, userLocation)
+    console.log('main weather, daily weather', await mainWeather, dailyWeather)
   }
   // *ask for location in an async way
   // * set to state

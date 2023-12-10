@@ -1,11 +1,13 @@
 import { useState, useRef } from 'react'
-import { useDispatch } from 'react-redux'
-import { setLocation } from '../rtk/locationSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { getLocation, setLocation } from '../rtk/locationSlice'
 import ContinentsDropdown from './ContinentsDropdown'
+import { fetchWeather } from '../rtk/weatherSlice'
 
 const MenuContinents = ({ items, depthLevel }) => {
   const dispatch = useDispatch()
   const [dropdown, setDropdown] = useState(false)
+  const location = useSelector(getLocation)
 
   let ref = useRef()
 
@@ -55,6 +57,7 @@ const MenuContinents = ({ items, depthLevel }) => {
           onClick={() => {
             //!! set the items.title as location for weather api
             dispatch(setLocation(items.title))
+            dispatch(fetchWeather({ lat: location.lat, lon: location.lon }, ''))
           }}
         >
           {items.title}
