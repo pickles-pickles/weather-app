@@ -45,7 +45,7 @@ const DetailsCard = () => {
                 key={day.dt}
               >
                 <div className='card-body'>
-                  <h5 className='card-title'>{locationName}</h5>
+                  {/*  <h5 className='card-title'>{locationName}</h5> */}
                   <h6 className='card-subtitle mb-2 text-muted'>
                     {`${new Date(day.dt * 1000).getFullYear()} /
                       ${new Date(day.dt * 1000).getMonth() + 1} / ${new Date(
