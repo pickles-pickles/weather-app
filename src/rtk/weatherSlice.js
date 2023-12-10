@@ -1,4 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { getWeather } from '../apis/services'
 
 /* check the local storage */
 const getDefaultTempUnit = () => {
@@ -7,6 +8,15 @@ const getDefaultTempUnit = () => {
   } else return 'Celsius'
 }
 
+export const fetchWeather = createAsyncThunk(
+  'weather/weather',
+  async (location, part) => {
+    const { lat, lon } = location
+    const response = await getWeather(lat, lon, part)
+    const data = await response.json()
+    return data
+  }
+)
 /* This slice follows a pattern of setters and geeters
     When the components need access to a part of the state, they call the respective getter
     When the components need to modify the state,  they call the respective setter
@@ -45,6 +55,27 @@ const weatherSlice = createSlice({
     setMeanTemp: (state, action) => {
       state.meanTemp = action.payload
     }
+  },
+  extraReducers: builder => {
+    builder
+      .addCase(fetchWeather.pending, state => {
+        state.isLoading = true
+        state.success = false
+      })
+      .addCase(fetchWeather.rejected, (state, action) => {
+        state.isLoading = false
+        state.error = action.error
+      })
+
+      .addCase(fetchWeather.fulfilled, (state, action) => {
+        //state.user = action.payload
+        state.weatherDaily = action.payload.daily
+        state.hourlyWeather = action.payload.hourly
+        console.log('weather fetch successful ', action.payload)
+        state.isLoading = false
+        state.success = true
+        state.error = false
+      })
   }
 })
 

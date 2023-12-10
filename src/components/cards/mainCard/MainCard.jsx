@@ -7,7 +7,8 @@ import {
   setDailyWeather,
   setHourlyWeather,
   getMainWeather,
-  getTempUnit
+  getTempUnit,
+  fetchWeather
 } from '../../../rtk/weatherSlice'
 import TempUnitsSelect from './TempUnitsSelect'
 import { convertTemp } from '../../../helpers/otherHelpers'
@@ -18,7 +19,6 @@ const MainCard = () => {
   const lat = useSelector(getLocation).lat
 
   const lon = useSelector(getLocation).lon
-  const part = ''
 
   /* date */
   const date = useSelector(getDate)
@@ -31,24 +31,9 @@ const MainCard = () => {
 
   const mainWeather = useSelector(getMainWeather)
 
-  const fetchWeather = async () => {
-    const request = await fetch(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=${part}&appid=${process.env.REACT_APP_API_KEY}`
-    )
-    const stats = await request.json()
-
-    /* if api call is successful, set the daily weather []  and the main weather {} */
-    if (stats.lat) {
-      const temp = stats.daily
-
-      dispatch(setDailyWeather(temp))
-      dispatch(setMainWeather(daysFromToday))
-      dispatch(setHourlyWeather(stats.hourly))
-    }
-  }
-
   useEffect(() => {
-    fetchWeather()
+    dispatch(fetchWeather({ lat, lon }, ''))
+    dispatch(setMainWeather(daysFromToday))
   }, [lat])
 
   /* TEMP */
