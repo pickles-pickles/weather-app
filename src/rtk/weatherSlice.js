@@ -33,7 +33,10 @@ const initialState = {
   hourlyWeather: [],
   temp: undefined,
   tempUnit: getDefaultTempUnit(),
-  meanTemp: undefined
+  meanTemp: undefined,
+  isLoading: false,
+  error: null,
+  success: false
 }
 
 const weatherSlice = createSlice({
@@ -100,5 +103,8 @@ export const getHourlyWeather = state => state.weather.hourlyWeather
 /* temp */
 export const getTempUnit = state => state.weather.tempUnit
 export const getMeanTemp = state => state.weather.meanTemp
+export const getIsLoading = state => state.weather.isLoading
+export const getError = state => state.weather.error
+export const getSuccess = state => state.weather.success
 
 export default weatherSlice.reducer

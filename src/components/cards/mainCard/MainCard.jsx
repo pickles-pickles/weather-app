@@ -3,6 +3,7 @@ import { getDate, getDaysFromToday } from '../../../rtk/dateSlice'
 import {
   fetchWeather,
   getFullWeather,
+  getIsLoading,
   getMainWeather,
   getTempUnit,
   setMainWeather
@@ -24,6 +25,9 @@ const MainCard = () => {
   /* weather */
   const weather = useSelector(getFullWeather)
   const mainWeather = useSelector(getMainWeather)
+
+  /* loaders */
+  const isLoading = useSelector(getIsLoading)
 
   useEffect(() => {
     const paramsPairs = [...URLSearchParams]
@@ -54,7 +58,7 @@ const MainCard = () => {
           </p>
           <TempUnitsSelect></TempUnitsSelect>
         </div>
-        {mainWeather.moonrise ? (
+        {mainWeather.moonrise && !isLoading && (
           <ul className='list-group list-group-flush'>
             <li className='list-group-item'>
               <p className='main-card-p'>lat: {weather.lat}</p>
@@ -113,9 +117,12 @@ const MainCard = () => {
               </p>
             </li>
           </ul>
-        ) : (
+        )}
+        {!isLoading && !mainWeather.moonrise && (
           <p className='card-text text-center'>Select a city</p>
         )}
+
+        {isLoading && <p style={{ textAlign: 'center' }}>Loading ...</p>}
       </div>
     </>
   )
