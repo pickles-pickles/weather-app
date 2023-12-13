@@ -2,9 +2,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getDate, getDaysFromToday } from '../../../rtk/dateSlice'
 import {
   fetchWeather,
+  getError,
   getFullWeather,
   getIsLoading,
   getMainWeather,
+  getSuccess,
   getTempUnit,
   setMainWeather
 } from '../../../rtk/weatherSlice'
@@ -27,7 +29,9 @@ const MainCard = () => {
   const mainWeather = useSelector(getMainWeather)
 
   /* loaders */
-  const isLoading = useSelector(getIsLoading)
+  const isLoading = useSelector(getIsLoading),
+    success = useSelector(getSuccess),
+    error = useSelector(getError)
 
   useEffect(() => {
     const paramsPairs = [...URLSearchParams]
@@ -37,6 +41,7 @@ const MainCard = () => {
       paramsPairs[0][0] === 'lat' &&
       paramsPairs[1][0] === 'lon'
     ) {
+      console.log('params pairs', paramsPairs)
       dispatch(
         fetchWeather({ lat: paramsPairs[0][1], lon: paramsPairs[1][1] }, '')
       )
@@ -58,7 +63,7 @@ const MainCard = () => {
           </p>
           <TempUnitsSelect></TempUnitsSelect>
         </div>
-        {mainWeather.moonrise && !isLoading && (
+        {success && !isLoading && (
           <ul className='list-group list-group-flush'>
             <li className='list-group-item'>
               <p className='main-card-p'>lat: {weather.lat}</p>
@@ -118,11 +123,16 @@ const MainCard = () => {
             </li>
           </ul>
         )}
-        {!isLoading && !mainWeather.moonrise && (
+        {!isLoading && !success && (
           <p className='card-text text-center'>Select a city</p>
         )}
 
         {isLoading && <p style={{ textAlign: 'center' }}>Loading ...</p>}
+        {!isLoading && error && (
+          <p style={{ textAlign: 'center' }}>
+            {error.message || 'Something went wrong. Unidentified error'}
+          </p>
+        )}
       </div>
     </>
   )
