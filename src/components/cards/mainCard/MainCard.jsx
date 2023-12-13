@@ -1,14 +1,20 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getDate, getDaysFromToday } from '../../../rtk/dateSlice'
 import {
+  fetchWeather,
   getFullWeather,
   getMainWeather,
-  getTempUnit
+  getTempUnit,
+  setMainWeather
 } from '../../../rtk/weatherSlice'
 import TempUnitsSelect from './TempUnitsSelect'
 import { convertTemp } from '../../../helpers/otherHelpers'
+import { useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
 
 const MainCard = () => {
+  const dispatch = useDispatch()
+  const [URLSearchParams] = useSearchParams()
   /* date */
   const date = useSelector(getDate)
 
@@ -18,12 +24,21 @@ const MainCard = () => {
   /* weather */
   const weather = useSelector(getFullWeather)
   const mainWeather = useSelector(getMainWeather)
-  /* 
+
   useEffect(() => {
-    dispatch(fetchWeather({ lat, lon }, ''))
-    console.log('effetc: lat has changed', lat)
-    //dispatch(setMainWeather(daysFromToday))
-  }, [loc]) */
+    const paramsPairs = [...URLSearchParams]
+
+    if (
+      paramsPairs.length &&
+      paramsPairs[0][0] === 'lat' &&
+      paramsPairs[1][0] === 'lon'
+    ) {
+      dispatch(
+        fetchWeather({ lat: paramsPairs[0][1], lon: paramsPairs[1][1] }, '')
+      )
+      dispatch(setMainWeather(0))
+    }
+  }, [dispatch, URLSearchParams])
 
   /* TEMP */
   const tempUnit = useSelector(getTempUnit)
